@@ -2,7 +2,7 @@ name: TimoliaCustom
 version: 1.5
 author: pizzafreak08
 website: http://www.timolia.de/
-main: me.pizzafreak08.TimoliaCustom.TimoliaCustom
+main: de.dariusmewes.TimoliaCustom.TimoliaCustom
 commands:
     sapopvp:
         usage: /<command>

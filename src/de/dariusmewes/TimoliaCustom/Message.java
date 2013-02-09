@@ -1,4 +1,4 @@
-package me.pizzafreak08.TimoliaCustom;
+package de.dariusmewes.TimoliaCustom;
 
 import java.util.logging.Logger;
 

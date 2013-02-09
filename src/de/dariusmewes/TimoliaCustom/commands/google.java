@@ -1,9 +1,10 @@
-package me.pizzafreak08.TimoliaCustom.commands;
+package de.dariusmewes.TimoliaCustom.commands;
 
-import me.pizzafreak08.TimoliaCustom.Message;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
+
+import de.dariusmewes.TimoliaCustom.Message;
 
 public class google extends TCommand {
 
@@ -24,4 +25,5 @@ public class google extends TCommand {
 		Message.online(google + msg);
 		Message.console("[GOOGLE] " + msg);
 	}
+	
 }

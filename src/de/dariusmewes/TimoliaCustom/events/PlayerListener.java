@@ -1,9 +1,5 @@
-package me.pizzafreak08.TimoliaCustom.events;
+package de.dariusmewes.TimoliaCustom.events;
 
-import me.pizzafreak08.TimoliaCustom.Message;
-import me.pizzafreak08.TimoliaCustom.TimoliaCustom;
-import me.pizzafreak08.TimoliaCustom.commands.tode;
-import me.pizzafreak08.TimoliaCustom.commands.west;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -17,6 +13,11 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+
+import de.dariusmewes.TimoliaCustom.Message;
+import de.dariusmewes.TimoliaCustom.TimoliaCustom;
+import de.dariusmewes.TimoliaCustom.commands.tode;
+import de.dariusmewes.TimoliaCustom.commands.west;
 
 public class PlayerListener implements Listener {
 

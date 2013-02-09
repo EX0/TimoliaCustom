@@ -1,22 +1,8 @@
-package me.pizzafreak08.TimoliaCustom;
+package de.dariusmewes.TimoliaCustom;
 
 import java.io.File;
 import java.util.Vector;
 
-import me.pizzafreak08.TimoliaCustom.commands.CommandHandler;
-import me.pizzafreak08.TimoliaCustom.commands.checkent;
-import me.pizzafreak08.TimoliaCustom.commands.google;
-import me.pizzafreak08.TimoliaCustom.commands.itp;
-import me.pizzafreak08.TimoliaCustom.commands.protnpc;
-import me.pizzafreak08.TimoliaCustom.commands.sapopvp;
-import me.pizzafreak08.TimoliaCustom.commands.sgames;
-import me.pizzafreak08.TimoliaCustom.commands.sgcopy;
-import me.pizzafreak08.TimoliaCustom.commands.tbreload;
-import me.pizzafreak08.TimoliaCustom.commands.tode;
-import me.pizzafreak08.TimoliaCustom.commands.west;
-import me.pizzafreak08.TimoliaCustom.events.EntityListener;
-import me.pizzafreak08.TimoliaCustom.events.InventoryListener;
-import me.pizzafreak08.TimoliaCustom.events.PlayerListener;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -26,6 +12,21 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
+
+import de.dariusmewes.TimoliaCustom.commands.CommandHandler;
+import de.dariusmewes.TimoliaCustom.commands.checkent;
+import de.dariusmewes.TimoliaCustom.commands.google;
+import de.dariusmewes.TimoliaCustom.commands.itp;
+import de.dariusmewes.TimoliaCustom.commands.protnpc;
+import de.dariusmewes.TimoliaCustom.commands.sapopvp;
+import de.dariusmewes.TimoliaCustom.commands.sgames;
+import de.dariusmewes.TimoliaCustom.commands.sgcopy;
+import de.dariusmewes.TimoliaCustom.commands.tbreload;
+import de.dariusmewes.TimoliaCustom.commands.tode;
+import de.dariusmewes.TimoliaCustom.commands.west;
+import de.dariusmewes.TimoliaCustom.events.EntityListener;
+import de.dariusmewes.TimoliaCustom.events.InventoryListener;
+import de.dariusmewes.TimoliaCustom.events.PlayerListener;
 
 public class TimoliaCustom extends JavaPlugin {
 

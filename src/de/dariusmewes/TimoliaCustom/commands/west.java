@@ -1,4 +1,4 @@
-package me.pizzafreak08.TimoliaCustom.commands;
+package de.dariusmewes.TimoliaCustom.commands;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,8 +12,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Vector;
 
-import me.pizzafreak08.TimoliaCustom.Message;
-import me.pizzafreak08.TimoliaCustom.TimoliaCustom;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -23,6 +21,9 @@ import org.bukkit.command.CommandSender;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
+
+import de.dariusmewes.TimoliaCustom.Message;
+import de.dariusmewes.TimoliaCustom.TimoliaCustom;
 
 public class west extends TCommand {
 

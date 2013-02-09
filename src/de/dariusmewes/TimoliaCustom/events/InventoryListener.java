@@ -1,4 +1,4 @@
-package me.pizzafreak08.TimoliaCustom.events;
+package de.dariusmewes.TimoliaCustom.events;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

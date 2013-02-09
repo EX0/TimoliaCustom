@@ -1,11 +1,12 @@
-package me.pizzafreak08.TimoliaCustom.commands;
+package de.dariusmewes.TimoliaCustom.commands;
 
 import java.util.Vector;
 
-import me.pizzafreak08.TimoliaCustom.Message;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import de.dariusmewes.TimoliaCustom.Message;
 
 public class tode extends TCommand {
 

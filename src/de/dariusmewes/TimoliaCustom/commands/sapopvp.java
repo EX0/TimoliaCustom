@@ -1,8 +1,5 @@
-package me.pizzafreak08.TimoliaCustom.commands;
+package de.dariusmewes.TimoliaCustom.commands;
 
-import me.pizzafreak08.TimoliaCustom.Message;
-import me.pizzafreak08.TimoliaCustom.TimoliaCustom;
-import me.pizzafreak08.TimoliaCustom.events.EntityListener;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -12,6 +9,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
+
+import de.dariusmewes.TimoliaCustom.Message;
+import de.dariusmewes.TimoliaCustom.TimoliaCustom;
+import de.dariusmewes.TimoliaCustom.events.EntityListener;
 
 public class sapopvp extends TCommand {
 

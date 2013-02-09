@@ -1,8 +1,9 @@
-package me.pizzafreak08.TimoliaCustom.commands;
+package de.dariusmewes.TimoliaCustom.commands;
 
-import me.pizzafreak08.TimoliaCustom.TimoliaCustom;
 
 import org.bukkit.command.CommandSender;
+
+import de.dariusmewes.TimoliaCustom.TimoliaCustom;
 
 public abstract class TCommand {
 

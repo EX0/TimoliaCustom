@@ -1,9 +1,7 @@
-package me.pizzafreak08.TimoliaCustom.events;
+package de.dariusmewes.TimoliaCustom.events;
 
 import java.util.Vector;
 
-import me.pizzafreak08.TimoliaCustom.TimoliaCustom;
-import me.pizzafreak08.TimoliaCustom.commands.protnpc;
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -17,6 +15,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+
+import de.dariusmewes.TimoliaCustom.TimoliaCustom;
+import de.dariusmewes.TimoliaCustom.commands.protnpc;
 
 public class EntityListener implements Listener {
 

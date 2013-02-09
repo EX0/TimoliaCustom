@@ -1,12 +1,13 @@
-package me.pizzafreak08.TimoliaCustom.commands;
+package de.dariusmewes.TimoliaCustom.commands;
 
-import me.pizzafreak08.TimoliaCustom.Message;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import de.dariusmewes.TimoliaCustom.Message;
 
 public class itp extends TCommand {
 

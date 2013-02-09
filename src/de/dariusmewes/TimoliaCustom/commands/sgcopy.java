@@ -1,4 +1,4 @@
-package me.pizzafreak08.TimoliaCustom.commands;
+package de.dariusmewes.TimoliaCustom.commands;
 
 import java.io.File;
 import java.io.FileInputStream;

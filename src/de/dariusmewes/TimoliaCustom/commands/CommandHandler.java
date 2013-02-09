@@ -1,14 +1,15 @@
-package me.pizzafreak08.TimoliaCustom.commands;
+package de.dariusmewes.TimoliaCustom.commands;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import me.pizzafreak08.TimoliaCustom.Message;
-import me.pizzafreak08.TimoliaCustom.TimoliaCustom;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import de.dariusmewes.TimoliaCustom.Message;
+import de.dariusmewes.TimoliaCustom.TimoliaCustom;
 
 public class CommandHandler {
 

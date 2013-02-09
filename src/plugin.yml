@@ -16,7 +16,6 @@ commands:
         usage: /<command>
     tbreload:
     sgcopy:
-    tode:
     itp:
     checkent:
     protnpc:

@@ -1,7 +1,5 @@
 package de.dariusmewes.TimoliaCustom.events;
 
-
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -16,7 +14,6 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 import de.dariusmewes.TimoliaCustom.Message;
 import de.dariusmewes.TimoliaCustom.TimoliaCustom;
-import de.dariusmewes.TimoliaCustom.commands.tode;
 import de.dariusmewes.TimoliaCustom.commands.west;
 
 public class PlayerListener implements Listener {
@@ -43,18 +40,11 @@ public class PlayerListener implements Listener {
 		TimoliaCustom.gold.remove(event.getEntity().getName());
 		TimoliaCustom.eisen.remove(event.getEntity().getName());
 
-		// DEATH MSG
 		String vanillaMsg = event.getDeathMessage();
-		event.setDeathMessage("");
-		for (Player p : Bukkit.getOnlinePlayers()) {
-			if (tode.inactive.contains(p.getName()))
-				continue;
-
-			if (event.getEntity().getWorld().getName().equalsIgnoreCase("sgames") && plugin.getConfig().getBoolean("sgamesdeathmsg"))
-				p.sendMessage(ChatColor.DARK_RED + vanillaMsg);
-			else
-				p.sendMessage(ChatColor.DARK_GRAY + vanillaMsg);
-		}
+		if (event.getEntity().getWorld().getName().equalsIgnoreCase("sgames") && plugin.getConfig().getBoolean("sgamesdeathmsg"))
+			event.setDeathMessage(ChatColor.DARK_RED + vanillaMsg);
+		else
+			event.setDeathMessage(ChatColor.DARK_GRAY + vanillaMsg);
 	}
 
 	// hubfly

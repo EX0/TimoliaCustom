@@ -3,7 +3,6 @@ package de.dariusmewes.TimoliaCustom;
 import java.io.File;
 import java.util.Vector;
 
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -22,7 +21,6 @@ import de.dariusmewes.TimoliaCustom.commands.sapopvp;
 import de.dariusmewes.TimoliaCustom.commands.sgames;
 import de.dariusmewes.TimoliaCustom.commands.sgcopy;
 import de.dariusmewes.TimoliaCustom.commands.tbreload;
-import de.dariusmewes.TimoliaCustom.commands.tode;
 import de.dariusmewes.TimoliaCustom.commands.west;
 import de.dariusmewes.TimoliaCustom.events.EntityListener;
 import de.dariusmewes.TimoliaCustom.events.InventoryListener;
@@ -64,7 +62,6 @@ public class TimoliaCustom extends JavaPlugin {
 		CommandHandler.addCommand(new sgames());
 		CommandHandler.addCommand(new sgcopy());
 		CommandHandler.addCommand(new tbreload(this));
-		CommandHandler.addCommand(new tode());
 		CommandHandler.addCommand(new west(this));
 	}
 

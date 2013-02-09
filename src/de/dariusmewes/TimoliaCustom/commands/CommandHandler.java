@@ -29,7 +29,7 @@ public class CommandHandler {
 			return false;
 		}
 
-		if (!cmd.getPermission().equalsIgnoreCase("") && !sender.hasPermission(cmd.getPermission())) {
+		if (!cmd.getPermission().equalsIgnoreCase("") && !sender.hasPermission("tcore." + cmd.getPermission())) {
 			sender.sendMessage(Message.NOPERM);
 			return false;
 		}

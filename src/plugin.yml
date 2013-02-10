@@ -4,18 +4,30 @@ author: pizzafreak08
 website: http://www.timolia.de/
 main: de.dariusmewes.TimoliaCustom.TimoliaCustom
 commands:
-    sapopvp:
-        usage: /<command>
-    jumper:
-        usage: /<command>
-    google:
-        usage: /<command>
-    sgames:
-        usage: /<command>
-    west:
-        usage: /<command>
-    tbreload:
-    sgcopy:
-    itp:
     checkent:
+        usage: /checkent [args]
+        description: 
+    google:
+        usage: /google <msg>
+        description: 
+    itp:
+        usage: /itp [Player] <x> <y> <z>
+        description: 
     protnpc:
+        usage: /addnpc
+        description: 
+    sapopvp:
+        usage: /sapopvp [gold/eisen/pos1/pos2/warpgold/warpeisen/list]
+        description: 
+    sgames:
+        usage: /sgames
+        description: 
+    sgcopy:
+        usage: /sgcopy <world>
+        description: 
+    tcustom:
+        usage: /tcustom <reload>
+        description: 
+    west:
+        usage: /west help
+        description: 

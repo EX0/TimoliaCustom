@@ -11,7 +11,7 @@ public class Message {
 	public static final String INGAME = TimoliaCustom.PREFIX + "Dieser Befehl kann nicht in der Konsole benutzt werden!";
 	
 	public static void console(String message) {
-		Logger.getLogger("Minecraft").info("[Timolia] " + message);
+		Logger.getLogger("Minecraft").info("[TCustom] " + message);
 	}
 
 	public static void online(String message) {

@@ -54,7 +54,7 @@ public class CommandHandler {
 			return true;
 
 		else
-			sender.sendMessage(cmd.getUsage());
+			sender.sendMessage(TimoliaCustom.PREFIX + cmd.getUsage());
 		return false;
 	}
 

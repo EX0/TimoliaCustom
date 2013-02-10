@@ -8,7 +8,8 @@ public class tcustom extends TCommand {
 
 	public tcustom(String name) {
 		super(name);
-		setMaxArgs(0);
+		setMinArgs(1);
+		setMaxArgs(1);
 		setUsage("/tcustom <reload>");
 	}
 

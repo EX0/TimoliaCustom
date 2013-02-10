@@ -8,9 +8,8 @@ import org.bukkit.entity.Player;
 
 public class sgames extends TCommand {
 
-	public sgames() {
-		setName("sgames");
-		setPermission("timolia.sgames");
+	public sgames(String name) {
+		super(name);
 		setMaxArgs(0);
 		setUsage("/sgames");
 	}
@@ -39,4 +38,5 @@ public class sgames extends TCommand {
 
 		sender.sendMessage(prefix + "Tribute(" + count + "): " + msg);
 	}
+
 }

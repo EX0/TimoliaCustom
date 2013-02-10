@@ -11,9 +11,8 @@ import org.bukkit.command.CommandSender;
 
 public class sgcopy extends TCommand {
 
-	public sgcopy() {
-		setName("sgcopy");
-		setPermission("timolia.sgcopy");
+	public sgcopy(String name) {
+		super(name);
 		setMinArgs(1);
 		setMaxArgs(1);
 		setUsage("/sgcopy <world>");
@@ -81,4 +80,5 @@ public class sgcopy extends TCommand {
 
 		folder.delete();
 	}
+
 }

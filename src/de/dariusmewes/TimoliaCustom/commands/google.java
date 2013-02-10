@@ -1,6 +1,5 @@
 package de.dariusmewes.TimoliaCustom.commands;
 
-
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
@@ -8,9 +7,8 @@ import de.dariusmewes.TimoliaCustom.Message;
 
 public class google extends TCommand {
 
-	public google() {
-		setName("google");
-		setPermission("timolia.google");
+	public google(String name) {
+		super(name);
 		setMinArgs(1);
 		setUsage("/google <msg>");
 	}
@@ -25,5 +23,5 @@ public class google extends TCommand {
 		Message.online(google + msg);
 		Message.console("[GOOGLE] " + msg);
 	}
-	
+
 }

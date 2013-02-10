@@ -10,9 +10,8 @@ import de.dariusmewes.TimoliaCustom.Message;
 
 public class itp extends TCommand {
 
-	public itp() {
-		setName("itp");
-		setPermission("timolia.itp");
+	public itp(String name) {
+		super(name);
 		setMinArgs(3);
 		setMaxArgs(4);
 		setUsage("/itp [Player] <x> <y> <z>");
@@ -58,4 +57,5 @@ public class itp extends TCommand {
 		p.teleport(loc);
 		sender.sendMessage(prefix + p.getName() + " wurde teleportiert!");
 	}
+
 }

@@ -12,7 +12,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Vector;
 
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
@@ -27,14 +26,11 @@ import de.dariusmewes.TimoliaCustom.TimoliaCustom;
 
 public class west extends TCommand {
 
-	private static TimoliaCustom plugin;
 	private String wwPrefix = ChatColor.BLUE + "(Westwatch) " + ChatColor.WHITE;
 	public static HashMap<String, Long> watched = new HashMap<String, Long>();
 
-	public west(TimoliaCustom plugin) {
-		west.plugin = plugin;
-		setName("west");
-		setPermission("timolia.west");
+	public west(String name) {
+		super(name);
 		setMinArgs(1);
 		setMaxArgs(2);
 		setUsage("/west help");
@@ -87,7 +83,7 @@ public class west extends TCommand {
 				return;
 			}
 
-			World world = Bukkit.getWorld(plugin.getConfig().getString("westwatchwelt"));
+			World world = Bukkit.getWorld(instance.getConfig().getString("westwatchwelt"));
 
 			if (world == null) {
 				sender.sendMessage(wwPrefix + "Invalide Welt");
@@ -145,7 +141,7 @@ public class west extends TCommand {
 				return;
 			}
 
-			World world = Bukkit.getWorld(plugin.getConfig().getString("westwatchwelt"));
+			World world = Bukkit.getWorld(instance.getConfig().getString("westwatchwelt"));
 
 			if (world == null) {
 				sender.sendMessage(wwPrefix + "Invalide Welt");
@@ -283,11 +279,12 @@ public class west extends TCommand {
 	}
 
 	public static void repeatScanning() {
-		Bukkit.getScheduler().runTaskTimerAsynchronously(plugin, new Runnable() {
+		Bukkit.getScheduler().runTaskTimerAsynchronously(instance, new Runnable() {
 			public void run() {
 				Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "west scan");
 				Message.certain(ChatColor.BLUE + "(WestWatch) " + ChatColor.WHITE + "Die Weststadt wird gescannt...", "timolia.west.notify");
 			}
 		}, 1200L, 72000L);
 	}
+
 }

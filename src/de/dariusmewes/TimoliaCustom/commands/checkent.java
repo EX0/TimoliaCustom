@@ -18,10 +18,9 @@ import de.dariusmewes.TimoliaCustom.TimoliaCustom;
 
 public class checkent extends TCommand {
 
-	public checkent() {
-		setName("checkent");
+	public checkent(String name) {
+		super(name);
 		setIngame();
-		setPermission("timolia.checkent");
 		setMinArgs(1);
 		setMaxArgs(1);
 		setUsage("/checkent [args]");
@@ -64,4 +63,5 @@ public class checkent extends TCommand {
 
 		sender.sendMessage(prefix + lcount + " Monster/Tiere und " + count + " andere Entities!");
 	}
+	
 }

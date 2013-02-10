@@ -1,6 +1,5 @@
 package de.dariusmewes.TimoliaCustom.commands;
 
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -17,15 +16,11 @@ import de.dariusmewes.TimoliaCustom.events.EntityListener;
 public class sapopvp extends TCommand {
 
 	private String sprefix = ChatColor.RED + "(UtopiaPVP) " + ChatColor.WHITE;
-	private static TimoliaCustom plugin;
-
 	public static Location warpGold;
 	public static Location warpEisen;
 
-	public sapopvp(TimoliaCustom plugin) {
-		sapopvp.plugin = plugin;
-		setName("sapopvp");
-		setPermission("timolia.sapopvp");
+	public sapopvp(String name) {
+		super(name);
 		setIngame();
 		setMaxArgs(1);
 		setUsage("/sapopvp [gold/eisen/pos1/pos2/warpgold/warpeisen/list]");
@@ -35,7 +30,7 @@ public class sapopvp extends TCommand {
 		Player p = (Player) sender;
 
 		if (args.length == 0) {
-			FileConfiguration config = plugin.getConfig();
+			FileConfiguration config = instance.getConfig();
 
 			if (warpEisen == null || warpGold == null || config.getString("sapopvp.pos1").equalsIgnoreCase("") || config.getString("sapopvp.pos2").equalsIgnoreCase("")) {
 				p.sendMessage(sprefix + "Arena nicht bereit!");
@@ -79,13 +74,13 @@ public class sapopvp extends TCommand {
 			String locparse = loc.getWorld().getName() + "," + loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ();
 
 			if (args[0].equalsIgnoreCase("pos1")) {
-				plugin.getConfig().set("sapopvp.pos1", locparse);
-				plugin.saveConfig();
+				instance.getConfig().set("sapopvp.pos1", locparse);
+				instance.saveConfig();
 				p.sendMessage(prefix + "Punkt 1 der Arena gesetzt zu " + locparse);
 
 			} else if (args[0].equalsIgnoreCase("pos2")) {
-				plugin.getConfig().set("sapopvp.pos2", locparse);
-				plugin.saveConfig();
+				instance.getConfig().set("sapopvp.pos2", locparse);
+				instance.saveConfig();
 				p.sendMessage(prefix + "Punkt 2 der Arena gesetzt zu " + locparse);
 			}
 
@@ -96,13 +91,13 @@ public class sapopvp extends TCommand {
 			String locparse = loc.getWorld().getName() + "," + loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + "," + loc.getYaw() + "," + loc.getPitch();
 
 			if (args[0].equalsIgnoreCase("warpgold")) {
-				plugin.getConfig().set("sapopvp.warpgold", locparse);
-				plugin.saveConfig();
+				instance.getConfig().set("sapopvp.warpgold", locparse);
+				instance.saveConfig();
 				p.sendMessage(prefix + "Warp von Team Gold gesetzt");
 
 			} else if (args[0].equalsIgnoreCase("warpeisen")) {
-				plugin.getConfig().set("sapopvp.warpeisen", locparse);
-				plugin.saveConfig();
+				instance.getConfig().set("sapopvp.warpeisen", locparse);
+				instance.saveConfig();
 				p.sendMessage(prefix + "Warp von Team Eisen gesetzt");
 			}
 
@@ -174,18 +169,19 @@ public class sapopvp extends TCommand {
 	}
 
 	public static void updateArena() {
-		if (plugin.getConfig().getString("sapopvp.pos1").equalsIgnoreCase("") || plugin.getConfig().getString("sapopvp.pos2").equalsIgnoreCase(""))
+		if (instance.getConfig().getString("sapopvp.pos1").equalsIgnoreCase("") || instance.getConfig().getString("sapopvp.pos2").equalsIgnoreCase(""))
 			return;
 
-		EntityListener.saveArenaCoords(plugin.getConfig().getString("sapopvp.pos1").split(","), plugin.getConfig().getString("sapopvp.pos2").split(","));
+		EntityListener.saveArenaCoords(instance.getConfig().getString("sapopvp.pos1").split(","), instance.getConfig().getString("sapopvp.pos2").split(","));
 
-		if (plugin.getConfig().getString("sapopvp.warpgold").equalsIgnoreCase("") || plugin.getConfig().getString("sapopvp.warpeisen").equalsIgnoreCase(""))
+		if (instance.getConfig().getString("sapopvp.warpgold").equalsIgnoreCase("") || instance.getConfig().getString("sapopvp.warpeisen").equalsIgnoreCase(""))
 			return;
 
-		String[] dataG = plugin.getConfig().getString("sapopvp.warpgold").split(",");
-		String[] dataE = plugin.getConfig().getString("sapopvp.warpeisen").split(",");
+		String[] dataG = instance.getConfig().getString("sapopvp.warpgold").split(",");
+		String[] dataE = instance.getConfig().getString("sapopvp.warpeisen").split(",");
 
 		warpGold = new Location(Bukkit.getWorld(dataG[0]), Integer.valueOf(dataG[1]), Integer.valueOf(dataG[2]), Integer.valueOf(dataG[3]), Float.valueOf(dataG[4]), Float.valueOf(dataG[5]));
 		warpEisen = new Location(Bukkit.getWorld(dataE[0]), Integer.valueOf(dataE[1]), Integer.valueOf(dataE[2]), Integer.valueOf(dataE[3]), Float.valueOf(dataE[4]), Float.valueOf(dataE[5]));
 	}
+
 }

@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -26,9 +25,8 @@ public class protnpc extends TCommand {
 	public static List<String> active = new ArrayList<String>();
 	public static List<UUID> prot = new ArrayList<UUID>();
 
-	public protnpc() {
-		setName("protnpc");
-		setPermission("timolia.protnpc");
+	public protnpc(String name) {
+		super(name);
 		setIngame();
 		setMaxArgs(0);
 		setUsage("/addnpc");

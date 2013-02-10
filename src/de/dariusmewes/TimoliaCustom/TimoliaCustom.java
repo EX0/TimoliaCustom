@@ -1,7 +1,8 @@
 package de.dariusmewes.TimoliaCustom;
 
 import java.io.File;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -13,14 +14,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 
 import de.dariusmewes.TimoliaCustom.commands.CommandHandler;
-import de.dariusmewes.TimoliaCustom.commands.checkent;
-import de.dariusmewes.TimoliaCustom.commands.google;
-import de.dariusmewes.TimoliaCustom.commands.itp;
 import de.dariusmewes.TimoliaCustom.commands.protnpc;
 import de.dariusmewes.TimoliaCustom.commands.sapopvp;
-import de.dariusmewes.TimoliaCustom.commands.sgames;
-import de.dariusmewes.TimoliaCustom.commands.sgcopy;
-import de.dariusmewes.TimoliaCustom.commands.tbreload;
 import de.dariusmewes.TimoliaCustom.commands.west;
 import de.dariusmewes.TimoliaCustom.events.EntityListener;
 import de.dariusmewes.TimoliaCustom.events.InventoryListener;
@@ -30,13 +25,14 @@ public class TimoliaCustom extends JavaPlugin {
 
 	public static final String PREFIX = ChatColor.GREEN + "[Timolia] " + ChatColor.WHITE;
 	public static File dataFolder;
+	public static boolean debug = true;
 
-	public static Vector<String> tntarrows = new Vector<String>();
-	public static Vector<String> gold = new Vector<String>();
-	public static Vector<String> eisen = new Vector<String>();
+	public static List<String> tntarrows = new ArrayList<String>();
+	public static List<String> gold = new ArrayList<String>();
+	public static List<String> eisen = new ArrayList<String>();
 
 	public void onEnable() {
-		initCommands();
+		CommandHandler.init(this);
 		initEventHandlers();
 		initConfig();
 		dataFolder = getDataFolder();
@@ -51,18 +47,6 @@ public class TimoliaCustom extends JavaPlugin {
 	public void onDisable() {
 		west.saveWatchedPlayers();
 		protnpc.save();
-	}
-
-	private void initCommands() {
-		CommandHandler.addCommand(new checkent());
-		CommandHandler.addCommand(new google());
-		CommandHandler.addCommand(new itp());
-		CommandHandler.addCommand(new protnpc());
-		CommandHandler.addCommand(new sapopvp(this));
-		CommandHandler.addCommand(new sgames());
-		CommandHandler.addCommand(new sgcopy());
-		CommandHandler.addCommand(new tbreload(this));
-		CommandHandler.addCommand(new west(this));
 	}
 
 	private void initEventHandlers() {

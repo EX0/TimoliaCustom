@@ -1,7 +1,6 @@
 package de.dariusmewes.TimoliaCustom.events;
 
-import java.util.Vector;
-
+import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -21,8 +20,8 @@ import de.dariusmewes.TimoliaCustom.commands.protnpc;
 
 public class EntityListener implements Listener {
 
-	private static Vector<String> gold = TimoliaCustom.gold;
-	private static Vector<String> eisen = TimoliaCustom.eisen;
+	private static List<String> gold = TimoliaCustom.gold;
+	private static List<String> eisen = TimoliaCustom.eisen;
 
 	private static World sapoWorld;
 	private static int pos1X;
@@ -141,4 +140,5 @@ public class EntityListener implements Listener {
 		pos1Z = Math.min(Integer.valueOf(pos1[3]), Integer.valueOf(pos2[3]));
 		pos2Z = Math.max(Integer.valueOf(pos1[3]), Integer.valueOf(pos2[3]));
 	}
+	
 }

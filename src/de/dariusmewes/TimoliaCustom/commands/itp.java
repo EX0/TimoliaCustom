@@ -1,6 +1,5 @@
 package de.dariusmewes.TimoliaCustom.commands;
 
-
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -20,6 +19,8 @@ public class itp extends TCommand {
 	}
 
 	public void perform(CommandSender sender, String[] args) {
+		// OLD ITP CODE
+
 		Player p;
 		if (args.length == 3) {
 			if (!(sender instanceof Player)) {

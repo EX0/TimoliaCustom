@@ -33,7 +33,7 @@ public class sapopvp extends TCommand {
 		setIngame();
 		setMaxArgs(1);
 		setUsage("/sapopvp [gold/eisen/pos1/pos2/warpgold/warpeisen/list]");
-		setDesc("Befehl für die PVP-Arena");
+		setDesc("Befehl fuer die PVP-Arena");
 	}
 
 	public void perform(CommandSender sender, String[] args) {

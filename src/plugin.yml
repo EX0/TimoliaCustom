@@ -1,12 +1,12 @@
 name: TimoliaCustom
-version: 1.5
+version: 1.0
 author: pizzafreak08
 website: http://www.timolia.de/
 main: de.dariusmewes.TimoliaCustom.TimoliaCustom
 commands:
     checkent:
         usage: /checkent [args]
-        description: 
+        description: Pruefe die Entities auf einem bestimmten Grundstueck
     google:
         usage: /google <msg>
         description: 
@@ -14,20 +14,20 @@ commands:
         usage: /itp [Player] <x> <y> <z>
         description: 
     protnpc:
-        usage: /addnpc
-        description: 
+        usage: /protnpc
+        description: Protecte Villager
     sapopvp:
         usage: /sapopvp [gold/eisen/pos1/pos2/warpgold/warpeisen/list]
-        description: 
+        description: Befehl fuer die PVP-Arena
     sgames:
         usage: /sgames
-        description: 
+        description: Wieviele Tribute leben noch
     sgcopy:
-        usage: /sgcopy <world>
-        description: 
+        usage: /sgcopy <map>
+        description: Kopiere eine Survival-Games Map
     tcustom:
         usage: /tcustom <reload>
-        description: 
+        description: Plugin-Einstellungen
     west:
         usage: /west help
-        description: 
+        description: Westliste

@@ -28,7 +28,7 @@ public class checkent extends TCommand {
 		setMinArgs(1);
 		setMaxArgs(1);
 		setUsage("/checkent [args]");
-		setDesc("Prüfe die Entities auf einem bestimmten Grundstück");
+		setDesc("Pruefe die Entities auf einem bestimmten Grundstueck");
 	}
 
 	public void perform(CommandSender sender, String[] args) {

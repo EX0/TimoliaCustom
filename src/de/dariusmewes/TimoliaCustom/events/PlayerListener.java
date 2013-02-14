@@ -28,14 +28,31 @@ public class PlayerListener implements Listener {
 		this.plugin = plugin;
 	}
 
-	// instant damage stacks verbieten
+	// // instant damage stacks verbieten
 	// @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
-	// public void onPlayerInteract(PlayerInteractEvent event) {
-	// if (event.getPlayer().getItemInHand().getType() == Material.POTION &&
-	// event.getPlayer().getItemInHand().getAmount() > 1) {
-	// short data = event.getPlayer().getItemInHand().getDurability();
-	// if (data == 32732 || data == 32764)
+	// public void onProjectileLaunch(ProjectileLaunchEvent event) {
+	// Projectile ent = event.getEntity();
+	// Bukkit.broadcastMessage("debug 0");
+	// if (ent instanceof ThrownPotion) {
+	// Bukkit.broadcastMessage("debug 1");
+	//
+	// for (PotionEffect pe : ((ThrownPotion) ent).getEffects()) {
+	// Bukkit.broadcastMessage(pe.getType().toString() + " " + (pe.getType() ==
+	// PotionEffectType.HARM) + " " + PotionEffectType.HARM.toString());
+	// if (pe.getType() == PotionEffectType.HARM) {
+	// Bukkit.broadcastMessage("debug 2");
+	// if (ent.getShooter() instanceof Player) {
+	// Bukkit.broadcastMessage("debug 3");
+	// Player p = (Player) ent.getShooter();
+	// if (p.getItemInHand().getAmount() >= 1) {
+	// Bukkit.broadcastMessage("debug 4");
 	// event.setCancelled(true);
+	// p.getItemInHand().setAmount(p.getItemInHand().getAmount() + 1);
+	// }
+	// }
+	// return;
+	// }
+	// }
 	// }
 	// }
 

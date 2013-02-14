@@ -252,17 +252,15 @@ public class west extends TCommand {
 	}
 
 	public static boolean saveWatchedPlayers() {
-		File file = new File(TimoliaCustom.dataFolder + File.separator + "watched.custom");
-		ObjectOutputStream oos;
 		try {
-			oos = new ObjectOutputStream(new FileOutputStream(file));
+			File file = new File(TimoliaCustom.dataFolder + File.separator + "watched.custom");
+			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
 			oos.writeObject(west.watched);
 			oos.flush();
 			oos.close();
 			return true;
 		} catch (Exception e) {
-			Message.console("ERROR: ");
-			e.printStackTrace();
+			Message.console("Fehler beim Speichern der Westliste: " + e.getMessage());
 			return false;
 		}
 	}
@@ -279,8 +277,7 @@ public class west extends TCommand {
 			ois.close();
 			return true;
 		} catch (Exception e) {
-			Message.console("ERROR: ");
-			e.printStackTrace();
+			Message.console("Fehler beim Laden der Westliste: " + e.getMessage());
 			return false;
 		}
 	}

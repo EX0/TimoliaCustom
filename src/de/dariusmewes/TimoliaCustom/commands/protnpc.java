@@ -66,8 +66,7 @@ public class protnpc extends TCommand {
 			oos.writeObject(prot);
 			oos.close();
 		} catch (Exception e) {
-			Message.console("Fehler beim Speichern:");
-			e.printStackTrace();
+			Message.console("Fehler beim Speichern der protecteten NPCs: " + e.getMessage());
 		}
 	}
 
@@ -81,8 +80,7 @@ public class protnpc extends TCommand {
 				ois.close();
 			}
 		} catch (Exception e) {
-			Message.console("Fehler beim Laden:");
-			e.printStackTrace();
+			Message.console("Fehler beim Laden der protecteten NPCs: " + e.getMessage());
 		}
 	}
 

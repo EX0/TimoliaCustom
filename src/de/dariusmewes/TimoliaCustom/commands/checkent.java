@@ -1,3 +1,8 @@
+/*
+ *  Copyright:
+ *  2013 Darius Mewes
+ */
+
 package de.dariusmewes.TimoliaCustom.commands;
 
 import java.util.Map;
@@ -23,6 +28,7 @@ public class checkent extends TCommand {
 		setMinArgs(1);
 		setMaxArgs(1);
 		setUsage("/checkent [args]");
+		setDesc("Prüfe die Entities auf einem bestimmten Grundstück");
 	}
 
 	public void perform(CommandSender sender, String[] args) {

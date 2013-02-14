@@ -1,3 +1,8 @@
+/*
+ *  Copyright:
+ *  2013 Darius Mewes
+ */
+
 package de.dariusmewes.TimoliaCustom.commands;
 
 import java.io.File;
@@ -15,7 +20,8 @@ public class sgcopy extends TCommand {
 		super(name);
 		setMinArgs(1);
 		setMaxArgs(1);
-		setUsage("/sgcopy <world>");
+		setUsage("/sgcopy <map>");
+		setDesc("Kopiere eine Survival-Games Map");
 	}
 
 	public void perform(final CommandSender sender, String[] args) {

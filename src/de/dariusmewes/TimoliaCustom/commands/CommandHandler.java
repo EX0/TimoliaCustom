@@ -1,3 +1,8 @@
+/*
+ *  Copyright:
+ *  2013 Darius Mewes
+ */
+
 package de.dariusmewes.TimoliaCustom.commands;
 
 import java.io.BufferedWriter;

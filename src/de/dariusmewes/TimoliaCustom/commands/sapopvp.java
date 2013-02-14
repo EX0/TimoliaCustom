@@ -1,3 +1,8 @@
+/*
+ *  Copyright:
+ *  2013 Darius Mewes
+ */
+
 package de.dariusmewes.TimoliaCustom.commands;
 
 import java.util.ArrayList;
@@ -28,6 +33,7 @@ public class sapopvp extends TCommand {
 		setIngame();
 		setMaxArgs(1);
 		setUsage("/sapopvp [gold/eisen/pos1/pos2/warpgold/warpeisen/list]");
+		setDesc("Befehl für die PVP-Arena");
 	}
 
 	public void perform(CommandSender sender, String[] args) {
@@ -80,12 +86,12 @@ public class sapopvp extends TCommand {
 			if (args[0].equalsIgnoreCase("pos1")) {
 				instance.getConfig().set("sapopvp.pos1", locparse);
 				instance.saveConfig();
-				p.sendMessage(prefix + "Punkt 1 der Arena gesetzt zu " + locparse);
+				p.sendMessage(sprefix + "Punkt 1 der Arena gesetzt zu " + locparse);
 
 			} else if (args[0].equalsIgnoreCase("pos2")) {
 				instance.getConfig().set("sapopvp.pos2", locparse);
 				instance.saveConfig();
-				p.sendMessage(prefix + "Punkt 2 der Arena gesetzt zu " + locparse);
+				p.sendMessage(sprefix + "Punkt 2 der Arena gesetzt zu " + locparse);
 			}
 
 			updateArena();
@@ -97,12 +103,12 @@ public class sapopvp extends TCommand {
 			if (args[0].equalsIgnoreCase("warpgold")) {
 				instance.getConfig().set("sapopvp.warpgold", locparse);
 				instance.saveConfig();
-				p.sendMessage(prefix + "Warp von Team Gold gesetzt");
+				p.sendMessage(sprefix + "Warp von Team Gold gesetzt");
 
 			} else if (args[0].equalsIgnoreCase("warpeisen")) {
 				instance.getConfig().set("sapopvp.warpeisen", locparse);
 				instance.saveConfig();
-				p.sendMessage(prefix + "Warp von Team Eisen gesetzt");
+				p.sendMessage(sprefix + "Warp von Team Eisen gesetzt");
 			}
 
 			updateArena();

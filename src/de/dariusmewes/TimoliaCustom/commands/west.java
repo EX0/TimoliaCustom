@@ -1,3 +1,8 @@
+/*
+ *  Copyright:
+ *  2013 Darius Mewes
+ */
+
 package de.dariusmewes.TimoliaCustom.commands;
 
 import java.io.File;
@@ -35,6 +40,7 @@ public class west extends TCommand {
 		setMinArgs(1);
 		setMaxArgs(2);
 		setUsage("/west help");
+		setDesc("Westliste");
 	}
 
 	public void perform(CommandSender sender, String args[]) {

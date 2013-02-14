@@ -1,3 +1,8 @@
+/*
+ *  Copyright:
+ *  2013 Darius Mewes
+ */
+
 package de.dariusmewes.TimoliaCustom.events;
 
 import org.bukkit.Bukkit;
@@ -27,11 +32,11 @@ public class EntityListener implements Listener {
 	private static int pos2Y;
 	private static int pos2Z;
 
-	// sapopvp
 	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
 	public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
 		EntityType t = event.getEntity().getType();
 
+		// protnpc
 		if (t == EntityType.VILLAGER && event.getDamager().getType() == EntityType.PLAYER) {
 			Player p1 = (Player) event.getDamager();
 			if (protnpc.active.contains(p1.getName())) {
@@ -58,6 +63,8 @@ public class EntityListener implements Listener {
 			}
 		}
 
+		// sapopvp
+
 		if (t == EntityType.PLAYER) {
 			Player victim = (Player) event.getEntity();
 			if (!insideArena(victim) || !ingame(victim))
@@ -68,9 +75,8 @@ public class EntityListener implements Listener {
 			if (event.getDamager().getType() == EntityType.ARROW || event.getDamager().getType() == EntityType.EGG || event.getDamager().getType() == EntityType.SNOWBALL || event.getDamager().getType() == EntityType.SPLASH_POTION) {
 				Projectile bullet = (Projectile) event.getDamager();
 
-				if (bullet.getShooter().getType() != EntityType.PLAYER) {
+				if (bullet.getShooter().getType() != EntityType.PLAYER)
 					return;
-				}
 
 				attacker = (Player) bullet.getShooter();
 
@@ -79,11 +85,10 @@ public class EntityListener implements Listener {
 					return;
 				}
 
-				if (bullet.getType() == EntityType.EGG) {
+				if (bullet.getType() == EntityType.EGG)
 					victim.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 200, 2));
-				} else if (bullet.getType() == EntityType.SNOWBALL) {
+				else if (bullet.getType() == EntityType.SNOWBALL)
 					victim.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 80, 2));
-				}
 
 			} else if (event.getDamager().getType() == EntityType.PLAYER) {
 				attacker = (Player) event.getDamager();

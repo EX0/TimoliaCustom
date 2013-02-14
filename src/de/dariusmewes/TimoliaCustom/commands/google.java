@@ -1,3 +1,8 @@
+/*
+ *  Copyright:
+ *  2013 Darius Mewes
+ */
+
 package de.dariusmewes.TimoliaCustom.commands;
 
 import org.bukkit.ChatColor;
@@ -11,6 +16,7 @@ public class google extends TCommand {
 		super(name);
 		setMinArgs(1);
 		setUsage("/google <msg>");
+		setDesc("");
 	}
 
 	public void perform(CommandSender sender, String[] args) {

@@ -1,3 +1,8 @@
+/*
+ *  Copyright:
+ *  2013 Darius Mewes
+ */
+
 package de.dariusmewes.TimoliaCustom.commands;
 
 import org.bukkit.Bukkit;
@@ -15,6 +20,7 @@ public class itp extends TCommand {
 		setMinArgs(3);
 		setMaxArgs(4);
 		setUsage("/itp [Player] <x> <y> <z>");
+		setDesc("");
 	}
 
 	public void perform(CommandSender sender, String[] args) {

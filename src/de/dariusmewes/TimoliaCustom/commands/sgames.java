@@ -1,3 +1,8 @@
+/*
+ *  Copyright:
+ *  2013 Darius Mewes
+ */
+
 package de.dariusmewes.TimoliaCustom.commands;
 
 import org.bukkit.Bukkit;
@@ -12,6 +17,7 @@ public class sgames extends TCommand {
 		super(name);
 		setMaxArgs(0);
 		setUsage("/sgames");
+		setDesc("Wieviele Tribute leben noch?");
 	}
 
 	public void perform(CommandSender sender, String[] args) {

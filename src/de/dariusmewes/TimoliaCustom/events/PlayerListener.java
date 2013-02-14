@@ -1,15 +1,18 @@
+/*
+ *  Copyright:
+ *  2013 Darius Mewes
+ */
+
 package de.dariusmewes.TimoliaCustom.events;
 
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 import de.dariusmewes.TimoliaCustom.Message;
@@ -26,14 +29,15 @@ public class PlayerListener implements Listener {
 	}
 
 	// instant damage stacks verbieten
-	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
-	public void onPlayerInteract(PlayerInteractEvent event) {
-		if (event.getPlayer().getItemInHand().getType() == Material.POTION && event.getPlayer().getItemInHand().getAmount() > 1) {
-			short data = event.getPlayer().getItemInHand().getDurability();
-			if (data == 32732 || data == 32764)
-				event.setCancelled(true);
-		}
-	}
+	// @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+	// public void onPlayerInteract(PlayerInteractEvent event) {
+	// if (event.getPlayer().getItemInHand().getType() == Material.POTION &&
+	// event.getPlayer().getItemInHand().getAmount() > 1) {
+	// short data = event.getPlayer().getItemInHand().getDurability();
+	// if (data == 32732 || data == 32764)
+	// event.setCancelled(true);
+	// }
+	// }
 
 	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
 	public void onPlayerDeath(PlayerDeathEvent event) {

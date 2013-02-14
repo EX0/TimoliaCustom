@@ -1,3 +1,8 @@
+/*
+ *  Copyright:
+ *  2013 Darius Mewes
+ */
+
 package de.dariusmewes.TimoliaCustom.commands;
 
 import java.io.BufferedWriter;
@@ -29,7 +34,8 @@ public class protnpc extends TCommand {
 		super(name);
 		setIngame();
 		setMaxArgs(0);
-		setUsage("/addnpc");
+		setUsage("/protnpc");
+		setDesc("Protecte Villager");
 	}
 
 	public void perform(CommandSender sender, String[] args) {
@@ -79,4 +85,5 @@ public class protnpc extends TCommand {
 			e.printStackTrace();
 		}
 	}
+
 }

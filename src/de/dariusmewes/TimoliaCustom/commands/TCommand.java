@@ -1,3 +1,8 @@
+/*
+ *  Copyright:
+ *  2013 Darius Mewes
+ */
+
 package de.dariusmewes.TimoliaCustom.commands;
 
 import org.bukkit.command.CommandSender;
@@ -8,6 +13,7 @@ public abstract class TCommand {
 
 	private String name;
 	private String permission = "";
+	private String desc = "";
 	private boolean onlyIngame = false;
 	private int minArgs = 0;
 	private int maxArgs = -1;
@@ -22,23 +28,27 @@ public abstract class TCommand {
 
 	public abstract void perform(CommandSender sender, String[] args);
 
-	void setPermission(String permission) {
+	protected void setPermission(String permission) {
 		this.permission = permission;
 	}
 
-	void setIngame() {
+	protected void setDesc(String description) {
+		this.desc = description;
+	}
+
+	protected void setIngame() {
 		this.onlyIngame = true;
 	}
 
-	void setMinArgs(int minArgs) {
+	protected void setMinArgs(int minArgs) {
 		this.minArgs = minArgs;
 	}
 
-	void setMaxArgs(int string) {
+	protected void setMaxArgs(int string) {
 		this.maxArgs = string;
 	}
 
-	void setUsage(String text) {
+	protected void setUsage(String text) {
 		this.usage = text;
 	}
 
@@ -52,6 +62,10 @@ public abstract class TCommand {
 
 	String getPermission() {
 		return this.permission;
+	}
+
+	String getDescription() {
+		return this.desc;
 	}
 
 	boolean onlyIngame() {

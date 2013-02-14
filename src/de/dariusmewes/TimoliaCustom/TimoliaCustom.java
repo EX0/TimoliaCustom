@@ -28,7 +28,7 @@ public class TimoliaCustom extends JavaPlugin {
 
 	public static final String PREFIX = ChatColor.GREEN + "[TCustom] " + ChatColor.WHITE;
 	public static File dataFolder;
-	public static boolean coding = true;
+	public static boolean coding = false;
 
 	public void onEnable() {
 		CommandHandler.init(this);

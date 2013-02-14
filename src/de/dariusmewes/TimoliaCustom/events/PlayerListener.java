@@ -14,6 +14,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 import de.dariusmewes.TimoliaCustom.Message;
 import de.dariusmewes.TimoliaCustom.TimoliaCustom;
+import de.dariusmewes.TimoliaCustom.commands.sapopvp;
 import de.dariusmewes.TimoliaCustom.commands.west;
 
 public class PlayerListener implements Listener {
@@ -37,8 +38,8 @@ public class PlayerListener implements Listener {
 	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
 	public void onPlayerDeath(PlayerDeathEvent event) {
 		// PVP Arena Team entfernen
-		TimoliaCustom.gold.remove(event.getEntity().getName());
-		TimoliaCustom.eisen.remove(event.getEntity().getName());
+		sapopvp.gold.remove(event.getEntity().getName());
+		sapopvp.eisen.remove(event.getEntity().getName());
 
 		String vanillaMsg = event.getDeathMessage();
 		if (event.getEntity().getWorld().getName().equalsIgnoreCase("sgames") && plugin.getConfig().getBoolean("sgamesdeathmsg"))

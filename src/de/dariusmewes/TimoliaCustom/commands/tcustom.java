@@ -17,7 +17,7 @@ public class tcustom extends TCommand {
 		if (args[0].equalsIgnoreCase("reload")) {
 			instance.reloadConfig();
 			sender.sendMessage(prefix + "Konfiguration neu geladen!");
-		} else if (args[0].equalsIgnoreCase("debug") && TimoliaCustom.debug) {
+		} else if (args[0].equalsIgnoreCase("debug") && TimoliaCustom.coding) {
 			CommandHandler.list();
 		} else
 			sender.sendMessage(prefix + usage);

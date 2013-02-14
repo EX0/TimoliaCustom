@@ -1,5 +1,8 @@
 package de.dariusmewes.TimoliaCustom.commands;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -10,7 +13,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 
 import de.dariusmewes.TimoliaCustom.Message;
-import de.dariusmewes.TimoliaCustom.TimoliaCustom;
 import de.dariusmewes.TimoliaCustom.events.EntityListener;
 
 public class sapopvp extends TCommand {
@@ -18,6 +20,8 @@ public class sapopvp extends TCommand {
 	private String sprefix = ChatColor.RED + "(UtopiaPVP) " + ChatColor.WHITE;
 	public static Location warpGold;
 	public static Location warpEisen;
+	public static List<String> gold = new ArrayList<String>();
+	public static List<String> eisen = new ArrayList<String>();
 
 	public sapopvp(String name) {
 		super(name);
@@ -39,8 +43,8 @@ public class sapopvp extends TCommand {
 
 			boolean gold = false;
 
-			int goldSize = TimoliaCustom.gold.size();
-			int eisenSize = TimoliaCustom.eisen.size();
+			int goldSize = sapopvp.gold.size();
+			int eisenSize = sapopvp.eisen.size();
 
 			if (goldSize > eisenSize)
 				gold = false;
@@ -64,7 +68,7 @@ public class sapopvp extends TCommand {
 			return;
 		}
 
-		if (!sender.hasPermission("timolia.sapopvp.admin")) {
+		if (!sender.hasPermission("tcustom.sapopvp.admin")) {
 			sender.sendMessage(Message.NOPERM);
 			return;
 		}
@@ -104,7 +108,7 @@ public class sapopvp extends TCommand {
 			updateArena();
 
 		} else if (args[0].equalsIgnoreCase("list")) {
-			if (TimoliaCustom.gold.size() == 0 && TimoliaCustom.eisen.size() == 0) {
+			if (sapopvp.gold.size() == 0 && sapopvp.eisen.size() == 0) {
 				p.sendMessage(sprefix + "Beide Teams sind leer");
 				return;
 			}
@@ -112,11 +116,11 @@ public class sapopvp extends TCommand {
 			String gold = "";
 			String eisen = "";
 
-			for (String goldP : TimoliaCustom.gold) {
+			for (String goldP : sapopvp.gold) {
 				gold += goldP + " ";
 			}
 
-			for (String eisenP : TimoliaCustom.eisen) {
+			for (String eisenP : sapopvp.eisen) {
 				eisen += eisenP + " ";
 			}
 
@@ -140,14 +144,14 @@ public class sapopvp extends TCommand {
 
 		if (gold) {
 			sendIngame(sprefix + p.getName() + " ist dem goldenem Team beigetreten!");
-			TimoliaCustom.gold.add(p.getName());
-			TimoliaCustom.eisen.remove(p.getName());
+			sapopvp.gold.add(p.getName());
+			sapopvp.eisen.remove(p.getName());
 			p.sendMessage(sprefix + "Du bist dem goldenem Team beigetreten!");
 
 		} else {
 			sendIngame(sprefix + p.getName() + " ist dem eisernem Team beigetreten!");
-			TimoliaCustom.eisen.add(p.getName());
-			TimoliaCustom.gold.remove(p.getName());
+			sapopvp.eisen.add(p.getName());
+			sapopvp.gold.remove(p.getName());
 			p.sendMessage(sprefix + "Du bist dem eisernem Team beigetreten!");
 		}
 
@@ -155,13 +159,13 @@ public class sapopvp extends TCommand {
 	}
 
 	private void sendIngame(String msg) {
-		for (String pl : TimoliaCustom.gold) {
+		for (String pl : sapopvp.gold) {
 			Player target = Bukkit.getPlayer(pl);
 			if (target != null)
 				target.sendMessage(msg);
 		}
 
-		for (String pl : TimoliaCustom.eisen) {
+		for (String pl : sapopvp.eisen) {
 			Player target = Bukkit.getPlayer(pl);
 			if (target != null)
 				target.sendMessage(msg);

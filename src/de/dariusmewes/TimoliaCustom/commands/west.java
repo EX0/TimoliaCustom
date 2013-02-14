@@ -6,11 +6,12 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
-import java.util.Vector;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -27,7 +28,7 @@ import de.dariusmewes.TimoliaCustom.TimoliaCustom;
 public class west extends TCommand {
 
 	private String wwPrefix = ChatColor.BLUE + "(Westwatch) " + ChatColor.WHITE;
-	public static HashMap<String, Long> watched = new HashMap<String, Long>();
+	public static Map<String, Long> watched = new HashMap<String, Long>();
 
 	public west(String name) {
 		super(name);
@@ -156,7 +157,7 @@ public class west extends TCommand {
 
 			Map<String, ProtectedRegion> regions = man.getRegions();
 			Iterator<String> iter = regions.keySet().iterator();
-			Vector<String> in = new Vector<String>();
+			List<String> in = new ArrayList<String>();
 
 			while (iter.hasNext()) {
 				String name = iter.next();
@@ -167,7 +168,7 @@ public class west extends TCommand {
 			}
 
 			Iterator<String> iterate = west.watched.keySet().iterator();
-			Vector<String> removes = new Vector<String>();
+			List<String> removes = new ArrayList<String>();
 			while (iterate.hasNext()) {
 				String key = (String) iterate.next();
 				if (!in.contains(key))
@@ -282,7 +283,8 @@ public class west extends TCommand {
 		Bukkit.getScheduler().runTaskTimerAsynchronously(instance, new Runnable() {
 			public void run() {
 				Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "west scan");
-				Message.certain(ChatColor.BLUE + "(WestWatch) " + ChatColor.WHITE + "Die Weststadt wird gescannt...", "timolia.west.notify");
+				Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "west purge");
+				Message.certain(ChatColor.BLUE + "(WestWatch) " + ChatColor.WHITE + "Die Westliste wurde aktualisiert", "tcustom.west.notify");
 			}
 		}, 1200L, 72000L);
 	}

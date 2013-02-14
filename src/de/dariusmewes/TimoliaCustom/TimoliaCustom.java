@@ -1,8 +1,6 @@
 package de.dariusmewes.TimoliaCustom;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -23,13 +21,9 @@ import de.dariusmewes.TimoliaCustom.events.PlayerListener;
 
 public class TimoliaCustom extends JavaPlugin {
 
-	public static final String PREFIX = ChatColor.GREEN + "[Timolia] " + ChatColor.WHITE;
+	public static final String PREFIX = ChatColor.GREEN + "[TCustom] " + ChatColor.WHITE;
 	public static File dataFolder;
-	public static boolean debug = true;
-
-	public static List<String> tntarrows = new ArrayList<String>();
-	public static List<String> gold = new ArrayList<String>();
-	public static List<String> eisen = new ArrayList<String>();
+	public static boolean coding = true;
 
 	public void onEnable() {
 		CommandHandler.init(this);
@@ -41,7 +35,7 @@ public class TimoliaCustom extends JavaPlugin {
 		protnpc.load();
 		west.loadWatchedPlayers();
 		west.repeatScanning();
-		// protnpc, potion damage 64
+		// potion damage 64
 	}
 
 	public void onDisable() {

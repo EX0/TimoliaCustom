@@ -1,7 +1,5 @@
 package de.dariusmewes.TimoliaCustom.events;
 
-import java.util.List;
-
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.EntityType;
@@ -17,11 +15,9 @@ import org.bukkit.potion.PotionEffectType;
 
 import de.dariusmewes.TimoliaCustom.TimoliaCustom;
 import de.dariusmewes.TimoliaCustom.commands.protnpc;
+import de.dariusmewes.TimoliaCustom.commands.sapopvp;
 
 public class EntityListener implements Listener {
-
-	private static List<String> gold = TimoliaCustom.gold;
-	private static List<String> eisen = TimoliaCustom.eisen;
 
 	private static World sapoWorld;
 	private static int pos1X;
@@ -113,17 +109,17 @@ public class EntityListener implements Listener {
 	}
 
 	private boolean sameTeam(Player p1, Player p2) {
-		if (gold.contains(p1.getName())) {
-			return gold.contains(p2.getName());
-		} else if (eisen.contains(p1.getName())) {
-			return eisen.contains(p2.getName());
+		if (sapopvp.gold.contains(p1.getName())) {
+			return sapopvp.gold.contains(p2.getName());
+		} else if (sapopvp.eisen.contains(p1.getName())) {
+			return sapopvp.eisen.contains(p2.getName());
 		} else {
 			return false;
 		}
 	}
 
 	public static boolean ingame(Player p) {
-		if (gold.contains(p.getName()) || eisen.contains(p.getName()))
+		if (sapopvp.gold.contains(p.getName()) || sapopvp.eisen.contains(p.getName()))
 			return true;
 		else
 			return false;
@@ -140,5 +136,5 @@ public class EntityListener implements Listener {
 		pos1Z = Math.min(Integer.valueOf(pos1[3]), Integer.valueOf(pos2[3]));
 		pos2Z = Math.max(Integer.valueOf(pos1[3]), Integer.valueOf(pos2[3]));
 	}
-	
+
 }

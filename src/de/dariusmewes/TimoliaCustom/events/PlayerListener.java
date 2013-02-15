@@ -8,12 +8,17 @@ package de.dariusmewes.TimoliaCustom.events;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
+import org.bukkit.entity.ThrownPotion;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import de.dariusmewes.TimoliaCustom.Message;
 import de.dariusmewes.TimoliaCustom.TimoliaCustom;
@@ -28,33 +33,23 @@ public class PlayerListener implements Listener {
 		this.plugin = plugin;
 	}
 
-	// // instant damage stacks verbieten
-	// @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
-	// public void onProjectileLaunch(ProjectileLaunchEvent event) {
-	// Projectile ent = event.getEntity();
-	// Bukkit.broadcastMessage("debug 0");
-	// if (ent instanceof ThrownPotion) {
-	// Bukkit.broadcastMessage("debug 1");
-	//
-	// for (PotionEffect pe : ((ThrownPotion) ent).getEffects()) {
-	// Bukkit.broadcastMessage(pe.getType().toString() + " " + (pe.getType() ==
-	// PotionEffectType.HARM) + " " + PotionEffectType.HARM.toString());
-	// if (pe.getType() == PotionEffectType.HARM) {
-	// Bukkit.broadcastMessage("debug 2");
-	// if (ent.getShooter() instanceof Player) {
-	// Bukkit.broadcastMessage("debug 3");
-	// Player p = (Player) ent.getShooter();
-	// if (p.getItemInHand().getAmount() >= 1) {
-	// Bukkit.broadcastMessage("debug 4");
-	// event.setCancelled(true);
-	// p.getItemInHand().setAmount(p.getItemInHand().getAmount() + 1);
-	// }
-	// }
-	// return;
-	// }
-	// }
-	// }
-	// }
+	// instant damage stacks verbieten
+	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+	public void onProjectileLaunch(ProjectileLaunchEvent event) {
+		Projectile ent = event.getEntity();
+		if (ent instanceof ThrownPotion)
+			for (PotionEffect pe : ((ThrownPotion) ent).getEffects())
+				if (pe.getType().equals(PotionEffectType.HARM)) {
+					if (ent.getShooter() instanceof Player) {
+						Player p = (Player) ent.getShooter();
+						if (p.getItemInHand().getAmount() >= 1) {
+							event.setCancelled(true);
+							p.getItemInHand().setAmount(p.getItemInHand().getAmount() + 1);
+						}
+					}
+					return;
+				}
+	}
 
 	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
 	public void onPlayerDeath(PlayerDeathEvent event) {

@@ -56,7 +56,7 @@ public class EntityListener implements Listener {
 			}
 
 			if (protnpc.prot.contains(event.getEntity().getUniqueId())) {
-				p1.sendMessage(TimoliaCustom.PREFIX + "Du kannst diesem NPC nicht schaden, aber dein Name wurde gespeichert!");
+				p1.kickPlayer(TimoliaCustom.PREFIX + "Can't touch this!");
 				protnpc.addName(p1.getName(), (Villager) event.getEntity());
 				event.setCancelled(true);
 				return;

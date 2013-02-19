@@ -23,6 +23,7 @@ import de.dariusmewes.TimoliaCustom.commands.west;
 import de.dariusmewes.TimoliaCustom.events.EntityListener;
 import de.dariusmewes.TimoliaCustom.events.InventoryListener;
 import de.dariusmewes.TimoliaCustom.events.PlayerListener;
+import de.dariusmewes.TimoliaCustom.events.ProjectileListener;
 
 public class TimoliaCustom extends JavaPlugin {
 
@@ -52,6 +53,7 @@ public class TimoliaCustom extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new PlayerListener(this), this);
 		Bukkit.getPluginManager().registerEvents(new EntityListener(), this);
 		Bukkit.getPluginManager().registerEvents(new InventoryListener(), this);
+		Bukkit.getPluginManager().registerEvents(new ProjectileListener(), this);
 	}
 
 	private void initConfig() {

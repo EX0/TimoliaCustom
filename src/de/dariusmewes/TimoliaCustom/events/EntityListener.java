@@ -18,6 +18,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import de.dariusmewes.TimoliaCustom.Message;
 import de.dariusmewes.TimoliaCustom.TimoliaCustom;
 import de.dariusmewes.TimoliaCustom.commands.protnpc;
 import de.dariusmewes.TimoliaCustom.commands.sapopvp;
@@ -57,6 +58,7 @@ public class EntityListener implements Listener {
 
 			if (protnpc.prot.contains(event.getEntity().getUniqueId())) {
 				p1.kickPlayer(TimoliaCustom.PREFIX + "Can't touch this!");
+				Message.console(p1 + " wollte einen NPC schlagen! --> Kick!");
 				protnpc.addName(p1.getName(), (Villager) event.getEntity());
 				event.setCancelled(true);
 				return;

@@ -21,6 +21,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 
 import de.dariusmewes.TimoliaCustom.commands.CommandHandler;
+import de.dariusmewes.TimoliaCustom.commands.addlink;
 import de.dariusmewes.TimoliaCustom.commands.protnpc;
 import de.dariusmewes.TimoliaCustom.commands.sapopvp;
 import de.dariusmewes.TimoliaCustom.commands.west;
@@ -70,9 +71,15 @@ public class TimoliaCustom extends JavaPlugin {
 		conf.addDefault("sgamesdeathmsg", true);
 		conf.addDefault("linkShortening", true);
 		conf.addDefault("linkURL", "http://www.timolia.de/s/");
-
 		conf.options().copyDefaults(true);
 		saveConfig();
+		
+		loadConfig();
+	}
+	
+	public void loadConfig(){
+		addlink.coreURL = getConfig().getString("linkURL");
+		addlink.shorterCore = addlink.coreURL.substring(7);
 	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String args[]) {

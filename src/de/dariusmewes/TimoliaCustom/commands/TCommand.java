@@ -20,10 +20,11 @@ public abstract class TCommand {
 	protected String usage = "";
 	protected static String prefix = TimoliaCustom.PREFIX;
 	protected static TimoliaCustom instance;
+	private static final String PERMISSION_PREFIX = "tcustom.";
 
 	public TCommand(String name) {
 		this.name = name;
-		this.permission = "tcustom." + name;
+		this.permission = PERMISSION_PREFIX + name;
 	}
 
 	public abstract void perform(CommandSender sender, String[] args);

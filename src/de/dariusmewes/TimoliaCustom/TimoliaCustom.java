@@ -79,7 +79,7 @@ public class TimoliaCustom extends JavaPlugin {
 	
 	public void loadConfig(){
 		addlink.coreURL = getConfig().getString("linkURL");
-		addlink.shorterCore = addlink.coreURL.substring(7);
+		addlink.shorterCore = addlink.coreURL.substring(11);
 	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String args[]) {

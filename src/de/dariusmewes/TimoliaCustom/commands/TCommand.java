@@ -18,7 +18,7 @@ public abstract class TCommand {
 	private int minArgs = 0;
 	private int maxArgs = -1;
 	protected String usage = "";
-	protected String prefix = TimoliaCustom.PREFIX;
+	protected static String prefix = TimoliaCustom.PREFIX;
 	protected static TimoliaCustom instance;
 
 	public TCommand(String name) {

@@ -5,7 +5,10 @@
 
 package de.dariusmewes.TimoliaCustom;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.text.SimpleDateFormat;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -81,6 +84,19 @@ public class TimoliaCustom extends JavaPlugin {
 		}
 
 		return (WorldGuardPlugin) plugin;
+	}
+	
+	public static void logError(String err) {
+		try {
+			File file = new File(TimoliaCustom.dataFolder + File.separator + "errors.txt");
+			BufferedWriter output = new BufferedWriter(new FileWriter(file, true));
+			String date = new SimpleDateFormat("dd. MMM. yyyy, HH:mm").format(System.currentTimeMillis());
+			output.append(date + "\t" + err + "\n");
+			output.close();
+			Message.console("Error logged!");
+		} catch (Exception e) {
+
+		}
 	}
 
 }

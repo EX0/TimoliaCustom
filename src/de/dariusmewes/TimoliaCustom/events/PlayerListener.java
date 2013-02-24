@@ -5,15 +5,6 @@
 
 package de.dariusmewes.TimoliaCustom.events;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.Random;
-
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
@@ -27,14 +18,13 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 import de.dariusmewes.TimoliaCustom.Message;
 import de.dariusmewes.TimoliaCustom.TimoliaCustom;
+import de.dariusmewes.TimoliaCustom.commands.addlink;
 import de.dariusmewes.TimoliaCustom.commands.sapopvp;
 import de.dariusmewes.TimoliaCustom.commands.west;
 
 public class PlayerListener implements Listener {
 
 	private TimoliaCustom plugin;
-	private static String linkKeys = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-	private static String coreURL = "http://127.01/s/";
 
 	public PlayerListener(TimoliaCustom plugin) {
 		this.plugin = plugin;
@@ -46,47 +36,28 @@ public class PlayerListener implements Listener {
 		String msg = event.getMessage();
 		if (msg.contains("http") || msg.contains("www.") || msg.contains(".de") || msg.contains(".com")) {
 			try {
+				if (addlink.active.containsKey(event.getPlayer())) {
+					addlink.writeToDB(event.getPlayer(), msg, addlink.active.get(event.getPlayer()));
+					addlink.active.remove(event.getPlayer());
+					event.setCancelled(true);
+					return;
+				}
+
 				String[] parts = msg.split(" ");
 				for (int i = 0; i < parts.length; i++)
 					if (parts[i].contains("http") || parts[i].contains("www.") || parts[i].contains(".de") || parts[i].contains(".com")) {
-						String tUrl = parts[i];
-						tUrl = tUrl.replaceFirst("http://", "");
-						tUrl = tUrl.replaceFirst("https://", "");
-						tUrl = tUrl.replaceFirst("www.", "");
-						if (tUrl.endsWith("/"))
-							tUrl = tUrl.substring(0, tUrl.length() - 1);
+						String tURL = parts[i];
+						tURL = tURL.replaceFirst("http://", "");
+						tURL = tURL.replaceFirst("https://", "");
+						if (tURL.endsWith("/"))
+							tURL = tURL.substring(0, tURL.length() - 1);
 
-						if (tUrl.length() > 20) {
-							tUrl = parts[i];
-							String hash = "";
-							Random rand = new Random();
-							for (int j = 0; j < 4; j++)
-								hash += linkKeys.charAt(rand.nextInt(linkKeys.length()));
-
-							URL url = new URL(coreURL + "add.php");
-							URLConnection con = url.openConnection();
-							con.setDoOutput(true);
-							OutputStream out = con.getOutputStream();
-							String data = "hash=" + hash + "&user=" + event.getPlayer().getName() + "&url=" + tUrl;
-							out.write(data.getBytes());
-							// debug
-							Bukkit.broadcastMessage(data);
-							out.flush();
-							out.close();
-
-							// InputStream in = con.getInputStream();
-							// BufferedReader reader = new BufferedReader(new
-							// InputStreamReader(in));
-							// String line;
-							// while ((line = reader.readLine()) != null) {
-							// Bukkit.broadcastMessage(line);
-							// }
-							// in.close();
-							// reader.close();
-
-							parts[i] = "timolia.de/s/?i=" + hash;
-						}
-
+						if (tURL.length() > 20) {
+							String hash = addlink.writeToDB(event.getPlayer(), tURL, null);
+							if (hash != null)
+								parts[i] = addlink.shorterCore + "?i=" + hash;
+						} else
+							parts[i] = tURL;
 					}
 
 				String out = "";
@@ -95,7 +66,7 @@ public class PlayerListener implements Listener {
 
 				event.setMessage(out);
 			} catch (Exception e) {
-				Message.console("Fehler beim Linkkürzen: " + e.getMessage());
+				TimoliaCustom.logError("Fehler (" + e.getMessage() + "):" + e.getStackTrace().toString());
 			}
 		}
 	}

@@ -13,6 +13,7 @@ commands:
     itp:
         usage: /itp [Player] <x> <y> <z>
         description: 
+    addlink:
     protnpc:
         usage: /protnpc
         description: Protecte Villager

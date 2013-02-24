@@ -23,8 +23,8 @@ import de.dariusmewes.TimoliaCustom.TimoliaCustom;
 public class addlink extends TCommand {
 
 	public static Map<Player, String> active = new HashMap<Player, String>();
-	public static String coreURL = "http://127.01/s/";
-	public static String shorterCore = "127.01/s/";
+	public static String coreURL = instance.getConfig().getString("linkURL");
+	public static String shorterCore = coreURL.substring(7);
 
 	public addlink(String name) {
 		super(name);

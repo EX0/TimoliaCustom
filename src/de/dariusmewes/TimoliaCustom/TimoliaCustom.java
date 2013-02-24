@@ -14,6 +14,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -60,14 +61,17 @@ public class TimoliaCustom extends JavaPlugin {
 	}
 
 	private void initConfig() {
-		getConfig().addDefault("sapopvp.pos1", "");
-		getConfig().addDefault("sapopvp.pos2", "");
-		getConfig().addDefault("sapopvp.warpgold", "");
-		getConfig().addDefault("sapopvp.warpeisen", "");
-		getConfig().addDefault("westwatchwelt", "timolia");
-		getConfig().addDefault("sgamesdeathmsg", true);
+		FileConfiguration conf = getConfig();
+		conf.addDefault("sapopvp.pos1", "");
+		conf.addDefault("sapopvp.pos2", "");
+		conf.addDefault("sapopvp.warpgold", "");
+		conf.addDefault("sapopvp.warpeisen", "");
+		conf.addDefault("westwatchwelt", "timolia");
+		conf.addDefault("sgamesdeathmsg", true);
+		conf.addDefault("linkShortening", true);
+		conf.addDefault("linkURL", "http://www.timolia.de/s/");
 
-		getConfig().options().copyDefaults(true);
+		conf.options().copyDefaults(true);
 		saveConfig();
 	}
 
@@ -85,7 +89,7 @@ public class TimoliaCustom extends JavaPlugin {
 
 		return (WorldGuardPlugin) plugin;
 	}
-	
+
 	public static void logError(String err) {
 		try {
 			File file = new File(TimoliaCustom.dataFolder + File.separator + "errors.txt");

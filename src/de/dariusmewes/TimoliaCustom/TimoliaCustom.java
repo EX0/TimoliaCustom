@@ -69,17 +69,17 @@ public class TimoliaCustom extends JavaPlugin {
 		conf.addDefault("sapopvp.warpeisen", "");
 		conf.addDefault("westwatchwelt", "timolia");
 		conf.addDefault("sgamesdeathmsg", true);
-		conf.addDefault("linkShortening", true);
+		conf.addDefault("linkShortening", false);
 		conf.addDefault("linkURL", "http://www.timolia.de/s/");
 		conf.options().copyDefaults(true);
 		saveConfig();
-		
+
 		loadConfig();
 	}
-	
-	public void loadConfig(){
+
+	public void loadConfig() {
 		addlink.coreURL = getConfig().getString("linkURL");
-		addlink.shorterCore = addlink.coreURL.substring(11);
+		addlink.shorterCore = addlink.coreURL.substring(11, addlink.coreURL.length() - 1);
 	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String args[]) {

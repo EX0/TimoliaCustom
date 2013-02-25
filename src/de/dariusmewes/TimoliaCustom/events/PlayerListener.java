@@ -34,7 +34,7 @@ public class PlayerListener implements Listener {
 	public void onAsyncPlayerChat(AsyncPlayerChatEvent event) {
 		// link shortening
 		String msg = event.getMessage();
-		if (msg.contains("http") || msg.contains("www.") || msg.contains(".de") || msg.contains(".com")) {
+		if (plugin.getConfig().getBoolean("linkShortening") && (msg.contains("http") || msg.contains("www.") || msg.contains(".de") || msg.contains(".com"))) {
 			try {
 				if (addlink.active.containsKey(event.getPlayer())) {
 					addlink.writeToDB(event.getPlayer(), msg, addlink.active.get(event.getPlayer()));
@@ -46,16 +46,19 @@ public class PlayerListener implements Listener {
 				String[] parts = msg.split(" ");
 				for (int i = 0; i < parts.length; i++)
 					if (parts[i].contains("http") || parts[i].contains("www.") || parts[i].contains(".de") || parts[i].contains(".com")) {
+						if (parts[i].contains(addlink.shorterCore))
+							continue;
+
 						String tURL = parts[i];
 						tURL = tURL.replaceFirst("http://", "");
 						tURL = tURL.replaceFirst("https://", "");
 						if (tURL.endsWith("/"))
 							tURL = tURL.substring(0, tURL.length() - 1);
 
-						if (tURL.length() > 20) {
+						if (tURL.length() > 17) {
 							String hash = addlink.writeToDB(event.getPlayer(), tURL, null);
 							if (hash != null)
-								parts[i] = addlink.shorterCore + "?i=" + hash;
+								parts[i] = addlink.shorterCore + "?" + hash;
 						} else
 							parts[i] = tURL;
 					}

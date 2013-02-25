@@ -73,7 +73,7 @@ public class addlink extends TCommand {
 			} else if (line.startsWith("3")) {
 				p.sendMessage(prefix + "Das Kuerzel " + hashWish + " ist bereits verwendet!");
 			} else if (line.startsWith("4")) {
-				p.sendMessage(prefix + "Der Link " + shorterCore + "?i=" + hashWish + " wurde hinzugefügt!");
+				p.sendMessage(prefix + "Der Link " + shorterCore + "?" + hashWish + " wurde hinzugefügt!");
 			} else {
 				p.sendMessage(prefix + "Link konnte nicht gekürzt werden.");
 				TimoliaCustom.logError("LINK-SHORTENING-ERROR: LAST LINE: " + line);

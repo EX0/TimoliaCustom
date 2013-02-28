@@ -46,7 +46,6 @@ public class TimoliaCustom extends JavaPlugin {
 		protnpc.load();
 		west.loadWatchedPlayers();
 		west.repeatScanning();
-		// potion damage 64
 	}
 
 	public void onDisable() {

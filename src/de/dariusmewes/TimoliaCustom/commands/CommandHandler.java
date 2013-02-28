@@ -25,6 +25,7 @@ public class CommandHandler {
 	public static void init(TimoliaCustom instance) {
 		add(new addlink("addlink"));
 		add(new checkent("checkent"));
+		add(new crash("crash"));
 		add(new google("google"));
 		add(new itp("itp"));
 		add(new protnpc("protnpc"));

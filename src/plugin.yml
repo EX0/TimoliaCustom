@@ -32,3 +32,4 @@ commands:
     west:
         usage: /west help
         description: Westliste
+    crash:

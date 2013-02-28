@@ -24,10 +24,10 @@ public class tcustom extends TCommand {
 			instance.reloadConfig();
 			instance.loadConfig();
 			sender.sendMessage(prefix + "Konfiguration neu geladen!");
-		} else if (args[0].equalsIgnoreCase("debug") && TimoliaCustom.coding) {
+		} else if (args[0].equalsIgnoreCase("debug") && TimoliaCustom.coding)
 			CommandHandler.list();
-		} else
-			sender.sendMessage(prefix + usage);
+		else
+			sender.sendMessage(getUsage());
 	}
 
 }

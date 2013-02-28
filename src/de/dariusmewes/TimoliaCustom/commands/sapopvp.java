@@ -134,7 +134,7 @@ public class sapopvp extends TCommand {
 			p.sendMessage(sprefix + "Eisen: " + eisen);
 
 		} else
-			sender.sendMessage(usage);
+			sender.sendMessage(getUsage());
 	}
 
 	private void portToArena(Player p, boolean gold) {

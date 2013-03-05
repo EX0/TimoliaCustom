@@ -12,13 +12,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 import de.dariusmewes.TimoliaCustom.Message;
 import de.dariusmewes.TimoliaCustom.TimoliaCustom;
-import de.dariusmewes.TimoliaCustom.commands.addlink;
 import de.dariusmewes.TimoliaCustom.commands.sapopvp;
 import de.dariusmewes.TimoliaCustom.commands.west;
 
@@ -28,50 +26,6 @@ public class PlayerListener implements Listener {
 
 	public PlayerListener(TimoliaCustom plugin) {
 		this.plugin = plugin;
-	}
-
-	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
-	public void onAsyncPlayerChat(AsyncPlayerChatEvent event) {
-		// link shortening
-		String msg = event.getMessage();
-		if (plugin.getConfig().getBoolean("linkShortening") && (msg.contains("http") || msg.contains("www.") || msg.contains(".de") || msg.contains(".com"))) {
-			try {
-				if (addlink.active.containsKey(event.getPlayer())) {
-					addlink.writeToDB(event.getPlayer(), msg, addlink.active.get(event.getPlayer()));
-					addlink.active.remove(event.getPlayer());
-					event.setCancelled(true);
-					return;
-				}
-
-				String[] parts = msg.split(" ");
-				for (int i = 0; i < parts.length; i++)
-					if (parts[i].contains("http") || parts[i].contains("www.") || parts[i].contains(".de") || parts[i].contains(".com")) {
-						if (parts[i].contains(addlink.shorterCore))
-							continue;
-
-						String tURL = parts[i];
-						tURL = tURL.replaceFirst("http://", "");
-						tURL = tURL.replaceFirst("https://", "");
-						if (tURL.endsWith("/"))
-							tURL = tURL.substring(0, tURL.length() - 1);
-
-						if (tURL.length() > 17) {
-							String hash = addlink.writeToDB(event.getPlayer(), tURL, null);
-							if (hash != null)
-								parts[i] = addlink.shorterCore + "?" + hash;
-						} else
-							parts[i] = tURL;
-					}
-
-				String out = "";
-				for (int k = 0; k < parts.length; k++)
-					out += parts[k] + " ";
-
-				event.setMessage(out);
-			} catch (Exception e) {
-				TimoliaCustom.logError("Fehler (" + e.getMessage() + "):" + e.getStackTrace().toString());
-			}
-		}
 	}
 
 	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)

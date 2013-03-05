@@ -23,7 +23,6 @@ public class CommandHandler {
 	private static List<TCommand> commands = new ArrayList<TCommand>();
 
 	public static void init(TimoliaCustom instance) {
-		add(new addlink("addlink"));
 		add(new checkent("checkent"));
 		add(new crash("crash"));
 		add(new google("google"));

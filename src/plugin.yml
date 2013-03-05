@@ -12,8 +12,7 @@ commands:
         description: 
     itp:
         usage: /itp [Player] <x> <y> <z>
-        description: 
-    addlink:
+        description:
     protnpc:
         usage: /protnpc
         description: Protecte Villager
@@ -32,4 +31,3 @@ commands:
     west:
         usage: /west help
         description: Westliste
-    crash:

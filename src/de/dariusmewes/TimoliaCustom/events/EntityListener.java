@@ -58,7 +58,7 @@ public class EntityListener implements Listener {
 
 			if (protnpc.prot.contains(event.getEntity().getUniqueId())) {
 				p1.kickPlayer(TimoliaCustom.PREFIX + "Can't touch this!");
-				Message.console(p1 + " wollte einen NPC schlagen! --> Kick!");
+				Message.console(p1.getName() + " wollte einen NPC schlagen! --> Kick!");
 				protnpc.addName(p1.getName(), (Villager) event.getEntity());
 				event.setCancelled(true);
 				return;

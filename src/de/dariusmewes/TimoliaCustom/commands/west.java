@@ -99,7 +99,7 @@ public class west extends TCommand {
 
 			RegionManager man = wg.getRegionManager(world);
 			if (man == null) {
-				sender.sendMessage(wwPrefix + "Regionen fŸr die Welt sind abgeschaltet");
+				sender.sendMessage(wwPrefix + "Regionen fÃ¼r die Welt sind abgeschaltet");
 				return;
 			}
 
@@ -122,7 +122,7 @@ public class west extends TCommand {
 				}
 			}
 
-			sender.sendMessage(wwPrefix + count + " Spieler wurden der Liste hinzugefŸgt");
+			sender.sendMessage(wwPrefix + count + " Spieler wurden der Liste hinzugefÃ¼gt");
 		}
 
 		else if (args[0].equalsIgnoreCase("save")) {
@@ -157,7 +157,7 @@ public class west extends TCommand {
 
 			RegionManager man = wg.getRegionManager(world);
 			if (man == null) {
-				sender.sendMessage(wwPrefix + "Regionen fŸr die Welt sind abgeschaltet");
+				sender.sendMessage(wwPrefix + "Regionen fï¿½r die Welt sind abgeschaltet");
 				return;
 			}
 
@@ -207,7 +207,7 @@ public class west extends TCommand {
 					sender.sendMessage(wwPrefix + target + " ist schon auf der Liste.");
 				} else {
 					west.watched.put(target, System.currentTimeMillis());
-					sender.sendMessage(wwPrefix + target + " wurde der Liste hinzugefŸgt.");
+					sender.sendMessage(wwPrefix + target + " wurde der Liste hinzugefÃ¼gt.");
 				}
 			}
 
@@ -240,13 +240,13 @@ public class west extends TCommand {
 		sender.sendMessage("******" + ChatColor.BLUE + "(Westwatch)" + ChatColor.WHITE + "******");
 		sender.sendMessage("Zu benutzen wie folgt: /west <Parameter>");
 		sender.sendMessage("Parameter:");
-		sender.sendMessage("add <Spieler> - FŸgt der Liste den Spieler hinzu");
+		sender.sendMessage("add <Spieler> - FÃ¼gt der Liste den Spieler hinzu");
 		sender.sendMessage("remove <Spieler> - Nimmt den Spieler von der Liste");
 		sender.sendMessage("list [-i] - Zeigt alle inaktiven Spieler. [-i] zeigt alle Spieler");
 		sender.sendMessage("scan - Scannt Worldguard");
-		sender.sendMessage("purge - Lšscht ŸberflŸssige EintrŠge");
+		sender.sendMessage("purge - LÃ¶scht Ã¼berflÃ¼ssige EintrÃ¤ge");
 		sender.sendMessage("save - Speichert die Liste");
-		sender.sendMessage("load - LŠdt die Liste neu");
+		sender.sendMessage("load - LÃ¤dt die Liste neu");
 		sender.sendMessage("clear - Leert die Liste");
 		sender.sendMessage("update - Aktualisiert die Zeit eines Spielers auf der Liste");
 	}

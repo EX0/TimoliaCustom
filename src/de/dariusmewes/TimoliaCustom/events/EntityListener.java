@@ -50,7 +50,7 @@ public class EntityListener implements Listener {
 				} else {
 					protnpc.prot.add(event.getEntity().getUniqueId());
 					protnpc.active.remove(p1.getName());
-					p1.sendMessage(TimoliaCustom.PREFIX + "Der NPC wurde geschützt!");
+					p1.sendMessage(TimoliaCustom.PREFIX + "Der NPC wurde gesch√ºtzt!");
 					event.setCancelled(true);
 				}
 				return;

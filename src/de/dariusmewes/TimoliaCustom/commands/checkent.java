@@ -44,7 +44,7 @@ public class checkent extends TCommand {
 
 		RegionManager man = wg.getRegionManager(world);
 		if (man == null) {
-			sender.sendMessage(prefix + "Regionen fŸr die Welt sind abgeschaltet");
+			sender.sendMessage(prefix + "Regionen fÃ¼r die Welt sind abgeschaltet");
 			return;
 		}
 

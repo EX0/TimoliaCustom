@@ -3,7 +3,7 @@
  *  2013 Darius Mewes
  */
 
-package de.dariusmewes.TimoliaCustom.commands;
+package de.timolia.custom.cmds;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +17,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 
-import de.dariusmewes.TimoliaCustom.Message;
-import de.dariusmewes.TimoliaCustom.events.EntityListener;
+import de.timolia.custom.Message;
+import de.timolia.custom.events.EntityListener;
 
 public class sapopvp extends TCommand {
 

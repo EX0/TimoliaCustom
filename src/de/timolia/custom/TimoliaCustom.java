@@ -3,7 +3,7 @@
  *  2013 Darius Mewes
  */
 
-package de.dariusmewes.TimoliaCustom;
+package de.timolia.custom;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -20,14 +20,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 
-import de.dariusmewes.TimoliaCustom.commands.CommandHandler;
-import de.dariusmewes.TimoliaCustom.commands.protnpc;
-import de.dariusmewes.TimoliaCustom.commands.sapopvp;
-import de.dariusmewes.TimoliaCustom.commands.west;
-import de.dariusmewes.TimoliaCustom.events.EntityListener;
-import de.dariusmewes.TimoliaCustom.events.InventoryListener;
-import de.dariusmewes.TimoliaCustom.events.PlayerListener;
-import de.dariusmewes.TimoliaCustom.events.ProjectileListener;
+import de.timolia.custom.cmds.CommandHandler;
+import de.timolia.custom.cmds.protnpc;
+import de.timolia.custom.cmds.sapopvp;
+import de.timolia.custom.cmds.west;
+import de.timolia.custom.events.EntityListener;
+import de.timolia.custom.events.InventoryListener;
+import de.timolia.custom.events.PlayerListener;
+import de.timolia.custom.events.ProjectileListener;
 
 public class TimoliaCustom extends JavaPlugin {
 

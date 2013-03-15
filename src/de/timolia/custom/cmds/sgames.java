@@ -3,7 +3,7 @@
  *  2013 Darius Mewes
  */
 
-package de.dariusmewes.TimoliaCustom.commands;
+package de.timolia.custom.cmds;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;

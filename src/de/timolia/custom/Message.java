@@ -3,7 +3,7 @@
  *  2013 Darius Mewes
  */
 
-package de.dariusmewes.TimoliaCustom;
+package de.timolia.custom;
 
 import java.util.logging.Logger;
 
@@ -12,7 +12,7 @@ import org.bukkit.entity.Player;
 
 public class Message {
 
-	public static final String NOPERM = TimoliaCustom.PREFIX + "Du hast keine Berechtigung fŸr diesen Befehl!";
+	public static final String NOPERM = TimoliaCustom.PREFIX + "Du hast keine Berechtigung fï¿½r diesen Befehl!";
 	public static final String INGAME = TimoliaCustom.PREFIX + "Dieser Befehl kann nicht in der Konsole benutzt werden!";
 	
 	public static void console(String message) {

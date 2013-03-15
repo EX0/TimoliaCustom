@@ -3,7 +3,7 @@
  *  2013 Darius Mewes
  */
 
-package de.dariusmewes.TimoliaCustom.events;
+package de.timolia.custom.events;
 
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;

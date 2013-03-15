@@ -3,7 +3,7 @@
  *  2013 Darius Mewes
  */
 
-package de.dariusmewes.TimoliaCustom.commands;
+package de.timolia.custom.cmds;
 
 import java.io.File;
 import java.io.FileInputStream;

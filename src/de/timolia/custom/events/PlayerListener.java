@@ -3,7 +3,7 @@
  *  2013 Darius Mewes
  */
 
-package de.dariusmewes.TimoliaCustom.events;
+package de.timolia.custom.events;
 
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -15,10 +15,10 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import de.dariusmewes.TimoliaCustom.Message;
-import de.dariusmewes.TimoliaCustom.TimoliaCustom;
-import de.dariusmewes.TimoliaCustom.commands.sapopvp;
-import de.dariusmewes.TimoliaCustom.commands.west;
+import de.timolia.custom.Message;
+import de.timolia.custom.TimoliaCustom;
+import de.timolia.custom.cmds.sapopvp;
+import de.timolia.custom.cmds.west;
 
 public class PlayerListener implements Listener {
 

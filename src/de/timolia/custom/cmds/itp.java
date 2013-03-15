@@ -3,7 +3,7 @@
  *  2013 Darius Mewes
  */
 
-package de.dariusmewes.TimoliaCustom.commands;
+package de.timolia.custom.cmds;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -11,7 +11,7 @@ import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import de.dariusmewes.TimoliaCustom.Message;
+import de.timolia.custom.Message;
 
 public class itp extends TCommand {
 

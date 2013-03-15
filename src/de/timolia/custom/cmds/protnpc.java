@@ -3,7 +3,7 @@
  *  2013 Darius Mewes
  */
 
-package de.dariusmewes.TimoliaCustom.commands;
+package de.timolia.custom.cmds;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -22,8 +22,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 
-import de.dariusmewes.TimoliaCustom.Message;
-import de.dariusmewes.TimoliaCustom.TimoliaCustom;
+import de.timolia.custom.Message;
+import de.timolia.custom.TimoliaCustom;
 
 public class protnpc extends TCommand {
 

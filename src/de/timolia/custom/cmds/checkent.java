@@ -3,7 +3,7 @@
  *  2013 Darius Mewes
  */
 
-package de.dariusmewes.TimoliaCustom.commands;
+package de.timolia.custom.cmds;
 
 import java.util.Map;
 
@@ -18,7 +18,7 @@ import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 
-import de.dariusmewes.TimoliaCustom.TimoliaCustom;
+import de.timolia.custom.TimoliaCustom;
 
 public class checkent extends TCommand {
 

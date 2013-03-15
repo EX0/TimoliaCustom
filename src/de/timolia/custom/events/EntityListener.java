@@ -3,7 +3,7 @@
  *  2013 Darius Mewes
  */
 
-package de.dariusmewes.TimoliaCustom.events;
+package de.timolia.custom.events;
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -18,10 +18,10 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import de.dariusmewes.TimoliaCustom.Message;
-import de.dariusmewes.TimoliaCustom.TimoliaCustom;
-import de.dariusmewes.TimoliaCustom.commands.protnpc;
-import de.dariusmewes.TimoliaCustom.commands.sapopvp;
+import de.timolia.custom.Message;
+import de.timolia.custom.TimoliaCustom;
+import de.timolia.custom.cmds.protnpc;
+import de.timolia.custom.cmds.sapopvp;
 
 public class EntityListener implements Listener {
 

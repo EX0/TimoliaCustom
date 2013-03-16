@@ -2,7 +2,7 @@ name: TimoliaCustom
 version: 1.0
 author: pizzafreak08
 website: http://www.timolia.de/
-main: de.dariusmewes.TimoliaCustom.TimoliaCustom
+main: de.timolia.custom.TimoliaCustom
 commands:
     checkent:
         usage: /checkent [args]

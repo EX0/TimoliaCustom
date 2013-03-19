@@ -33,12 +33,18 @@ public class protnpc extends TCommand {
 	public protnpc(String name) {
 		super(name);
 		setIngame();
-		setMaxArgs(0);
+		setMaxArgs(1);
 		setUsage("/protnpc");
 		setDesc("Protecte Villager");
 	}
 
 	public void perform(CommandSender sender, String[] args) {
+		if (args.length > 0 && args[0].equalsIgnoreCase("clear")){
+			prot.clear();
+			sender.sendMessage(prefix + "Alle geschützten NPCs sind nun attackierbar");
+			return;
+		}
+		
 		Player p = (Player) sender;
 		active.add(p.getName());
 		sender.sendMessage(prefix + "Bitte klicke auf einen Villager um ihn zu protecten!");

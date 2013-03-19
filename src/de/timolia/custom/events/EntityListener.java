@@ -6,8 +6,10 @@
 package de.timolia.custom.events;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.entity.Villager;
@@ -35,39 +37,49 @@ public class EntityListener implements Listener {
 
 	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
 	public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
-		EntityType t = event.getEntity().getType();
-
 		// protnpc
-		if (t == EntityType.VILLAGER && event.getDamager().getType() == EntityType.PLAYER) {
-			Player p1 = (Player) event.getDamager();
-			if (protnpc.active.contains(p1.getName())) {
+		if (event.getEntity().getType() == EntityType.VILLAGER && event.getDamager() != null) {
+			Player p = null;
+			if (event.getDamager().getType() == EntityType.PLAYER)
+				p = (Player) event.getDamager();
+			else if (event.getDamager() instanceof Projectile) {
+				LivingEntity shooter = ((Projectile) event.getDamager()).getShooter();
+				if (shooter != null && shooter instanceof Player)
+					p = (Player) shooter;
+				else
+					return;
+			} else
+				return;
+
+			Villager villager = (Villager) event.getEntity();
+			if (protnpc.active.contains(p.getName())) {
 				if (protnpc.prot.contains(event.getEntity().getUniqueId())) {
 					protnpc.prot.remove(event.getEntity().getUniqueId());
-					protnpc.active.remove(p1.getName());
-					p1.sendMessage(TimoliaCustom.PREFIX + "Der NPC-Schutz wurde aufgehoben!");
+					protnpc.active.remove(p.getName());
+					p.sendMessage(TimoliaCustom.PREFIX + "Der NPC-Schutz wurde aufgehoben!");
 					event.setCancelled(true);
 
 				} else {
 					protnpc.prot.add(event.getEntity().getUniqueId());
-					protnpc.active.remove(p1.getName());
-					p1.sendMessage(TimoliaCustom.PREFIX + "Der NPC wurde geschützt!");
+					protnpc.active.remove(p.getName());
+					p.sendMessage(TimoliaCustom.PREFIX + "Der NPC wurde geschützt!");
 					event.setCancelled(true);
 				}
 				return;
 			}
 
 			if (protnpc.prot.contains(event.getEntity().getUniqueId())) {
-				p1.kickPlayer(TimoliaCustom.PREFIX + "Can't touch this!");
-				Message.console(p1.getName() + " wollte einen NPC schlagen! --> Kick!");
-				protnpc.addName(p1.getName(), (Villager) event.getEntity());
+				p.damage(event.getDamage() + 4);
+				Message.online(ChatColor.GRAY + "Ein Villager rächte sich an " + p.getName());
+				protnpc.addName(p.getName(), villager);
+				villager.setHealth(villager.getMaxHealth());
 				event.setCancelled(true);
-				return;
 			}
+			return;
 		}
 
 		// sapopvp
-
-		if (t == EntityType.PLAYER) {
+		if (event.getEntity().getType() == EntityType.PLAYER) {
 			Player victim = (Player) event.getEntity();
 			if (!insideArena(victim) || !ingame(victim))
 				return;

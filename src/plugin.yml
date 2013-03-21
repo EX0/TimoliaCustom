@@ -4,6 +4,9 @@ author: pizzafreak08
 website: http://www.timolia.de/
 main: de.timolia.custom.TimoliaCustom
 commands:
+    bukkitcheck:
+        usage: /bukkitcheck
+        description: Pruefe ob ein neuer Bukkit-Beta Build draussen ist
     checkent:
         usage: /checkent [args]
         description: Pruefe die Entities auf einem bestimmten Grundstueck

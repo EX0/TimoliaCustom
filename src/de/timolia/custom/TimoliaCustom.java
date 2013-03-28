@@ -49,6 +49,7 @@ public class TimoliaCustom extends JavaPlugin {
 
 	public void onDisable() {
 		west.saveWatchedPlayers();
+		west.stopScanning();
 		protnpc.save();
 	}
 

@@ -16,11 +16,9 @@ public class InventoryListener implements Listener {
 	// sapopvp
 	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
 	public void onInventoryClick(InventoryClickEvent event) {
-		if (EntityListener.insideArena((Player) event.getWhoClicked())) {
-			if (event.getRawSlot() == 6) {
+		if (EntityListener.insideArena((Player) event.getWhoClicked()))
+			if (event.getRawSlot() == 6)
 				event.setCancelled(true);
-			}
-		}
 	}
-	
+
 }

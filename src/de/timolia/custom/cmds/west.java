@@ -22,6 +22,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
+import org.bukkit.scheduler.BukkitTask;
 
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.sk89q.worldguard.protection.managers.RegionManager;
@@ -32,8 +33,10 @@ import de.timolia.custom.TimoliaCustom;
 
 public class west extends TCommand {
 
-	private String wwPrefix = ChatColor.BLUE + "(Westwatch) " + ChatColor.WHITE;
 	public static Map<String, Long> watched = new HashMap<String, Long>();
+	private static BukkitTask task;
+
+	private String wwPrefix = ChatColor.BLUE + "(Westwatch) " + ChatColor.WHITE;
 
 	public west(String name) {
 		super(name);
@@ -203,9 +206,9 @@ public class west extends TCommand {
 
 			if (args[0].equalsIgnoreCase("add")) {
 				String target = args[1].toLowerCase();
-				if (west.watched.containsKey(target)) {
+				if (west.watched.containsKey(target))
 					sender.sendMessage(wwPrefix + target + " ist schon auf der Liste.");
-				} else {
+				else {
 					west.watched.put(target, System.currentTimeMillis());
 					sender.sendMessage(wwPrefix + target + " wurde der Liste hinzugefügt.");
 				}
@@ -216,9 +219,8 @@ public class west extends TCommand {
 				if (west.watched.containsKey(target)) {
 					west.watched.remove(target);
 					sender.sendMessage(wwPrefix + target.toLowerCase() + " wurde von der Liste entfernt.");
-				} else {
+				} else
 					sender.sendMessage(wwPrefix + target.toLowerCase() + " ist nicht auf der Liste.");
-				}
 			}
 
 			else if (args[0].equalsIgnoreCase("update")) {
@@ -230,9 +232,8 @@ public class west extends TCommand {
 				west.watched.put(args[1].toLowerCase(), System.currentTimeMillis());
 				sender.sendMessage(wwPrefix + "Die Zeit von " + args[1].toLowerCase() + " wurde aktualisiert!");
 
-			} else {
+			} else
 				displayHelp(sender);
-			}
 		}
 	}
 
@@ -283,13 +284,18 @@ public class west extends TCommand {
 	}
 
 	public static void repeatScanning() {
-		Bukkit.getScheduler().runTaskTimerAsynchronously(instance, new Runnable() {
+		task = Bukkit.getScheduler().runTaskTimerAsynchronously(instance, new Runnable() {
 			public void run() {
 				Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "west scan");
 				Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "west purge");
 				Message.certain(ChatColor.BLUE + "(WestWatch) " + ChatColor.WHITE + "Die Westliste wurde aktualisiert", "tcustom.west.notify");
 			}
 		}, 1200L, 72000L);
+	}
+
+	public static void stopScanning() {
+		if (task != null)
+			task.cancel();
 	}
 
 }

@@ -6,7 +6,6 @@
 package de.timolia.custom.events;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -20,7 +19,6 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import de.timolia.custom.Message;
 import de.timolia.custom.TimoliaCustom;
 import de.timolia.custom.cmds.protnpc;
 import de.timolia.custom.cmds.sapopvp;
@@ -70,7 +68,6 @@ public class EntityListener implements Listener {
 
 			if (protnpc.prot.contains(event.getEntity().getUniqueId())) {
 				p.damage(event.getDamage() + 4);
-				Message.online(ChatColor.GRAY + "Ein Villager rächte sich an " + p.getName());
 				protnpc.addName(p.getName(), villager);
 				villager.setHealth(villager.getMaxHealth());
 				event.setCancelled(true);

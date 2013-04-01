@@ -67,7 +67,7 @@ public class EntityListener implements Listener {
 			}
 
 			if (protnpc.prot.contains(event.getEntity().getUniqueId())) {
-				p.damage(event.getDamage() + 4);
+				p.damage(event.getDamage() + 4, villager);
 				protnpc.addName(p.getName(), villager);
 				villager.setHealth(villager.getMaxHealth());
 				event.setCancelled(true);

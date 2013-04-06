@@ -7,6 +7,7 @@ package de.timolia.custom.events;
 
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -14,6 +15,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerPickupItemEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import de.timolia.custom.Message;
 import de.timolia.custom.TimoliaCustom;
@@ -26,6 +30,19 @@ public class PlayerListener implements Listener {
 
 	public PlayerListener(TimoliaCustom plugin) {
 		this.plugin = plugin;
+	}
+
+	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+	public void onPlayerPickupItem(PlayerPickupItemEvent event) {
+		if (ProjectileListener.active.contains(event.getItem().getEntityId())) {
+			ItemStack newItem = new ItemStack(Material.ARROW, event.getItem().getItemStack().getAmount());
+			ItemMeta meta = newItem.getItemMeta();
+			meta.setDisplayName(ChatColor.DARK_RED + "Giftpfeil");
+			newItem.setItemMeta(meta);
+			event.getItem().remove();
+			event.setCancelled(true);
+			event.getPlayer().getInventory().addItem(newItem);
+		}
 	}
 
 	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)

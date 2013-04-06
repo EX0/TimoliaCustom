@@ -33,6 +33,13 @@ public class EntityListener implements Listener {
 	private static int pos2Y;
 	private static int pos2Z;
 
+	// giftpfeile
+	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+	public void onEntityDamageByEntity_MONITOR(EntityDamageByEntityEvent event) {
+		if (event.getDamager() != null && ProjectileListener.active.contains(event.getDamager().getEntityId()) && event.getEntity() instanceof LivingEntity)
+			((LivingEntity) event.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.POISON, 4 * 20, 1, true));
+	}
+
 	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
 	public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
 		// protnpc

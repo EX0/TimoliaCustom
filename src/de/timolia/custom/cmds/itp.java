@@ -13,14 +13,12 @@ import org.bukkit.entity.Player;
 
 import de.timolia.custom.Message;
 
-public class itp extends TCommand {
+public final class itp extends TCommand {
 
-	public itp(String name) {
-		super(name);
-		setMinArgs(3);
-		setMaxArgs(4);
-		setUsage("/itp [Player] <x> <y> <z>");
-		setDesc("");
+	protected void prepare() {
+		permission();
+		minArgs(3);
+		maxArgs(4);
 	}
 
 	public void perform(CommandSender sender, String[] args) {
@@ -47,7 +45,7 @@ public class itp extends TCommand {
 			x = Double.valueOf(args.length == 3 ? args[0].replaceAll(",", ".") : args[1].replaceAll(",", "."));
 			y = Double.valueOf(args.length == 3 ? args[1].replaceAll(",", ".") : args[2].replaceAll(",", "."));
 			z = Double.valueOf(args.length == 3 ? args[2].replaceAll(",", ".") : args[3].replaceAll(",", "."));
-		} catch (NumberFormatException e) {
+		} catch (final NumberFormatException e) {
 			sender.sendMessage(prefix + "Fehler: Keine Zahl");
 			return;
 		}

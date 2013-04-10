@@ -11,13 +11,11 @@ import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class sgames extends TCommand {
+public final class sgames extends TCommand {
 
-	public sgames(String name) {
-		super(name);
-		setMaxArgs(0);
-		setUsage("/sgames");
-		setDesc("Wieviele Tribute leben noch");
+	protected void prepare() {
+		permission();
+		maxArgs(0);
 	}
 
 	public void perform(CommandSender sender, String[] args) {

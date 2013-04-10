@@ -20,27 +20,27 @@ import org.bukkit.potion.PotionEffect;
 import de.timolia.custom.Message;
 import de.timolia.custom.events.EntityListener;
 
-public class sapopvp extends TCommand {
+public final class sapopvp extends TCommand {
 
-	private String sprefix = ChatColor.RED + "(UtopiaPVP) " + ChatColor.WHITE;
+	public static final List<String> gold = new ArrayList<String>();
+	public static final List<String> eisen = new ArrayList<String>();
+
 	public static Location warpGold;
 	public static Location warpEisen;
-	public static List<String> gold = new ArrayList<String>();
-	public static List<String> eisen = new ArrayList<String>();
 
-	public sapopvp(String name) {
-		super(name);
-		setIngame();
-		setMaxArgs(1);
-		setUsage("/sapopvp [gold/eisen/pos1/pos2/warpgold/warpeisen/list]");
-		setDesc("Befehl fuer die PVP-Arena");
+	private final String sprefix = ChatColor.RED + "(UtopiaPVP) " + ChatColor.WHITE;
+
+	protected void prepare() {
+		permission();
+		ingame();
+		maxArgs(1);
 	}
 
-	public void perform(CommandSender sender, String[] args) {
-		Player p = (Player) sender;
+	public void perform(final CommandSender sender, String[] args) {
+		final Player p = (Player) sender;
 
 		if (args.length == 0) {
-			FileConfiguration config = instance.getConfig();
+			final FileConfiguration config = instance.getConfig();
 
 			if (warpEisen == null || warpGold == null || config.getString("sapopvp.pos1").equalsIgnoreCase("") || config.getString("sapopvp.pos2").equalsIgnoreCase("")) {
 				p.sendMessage(sprefix + "Arena nicht bereit!");
@@ -49,8 +49,8 @@ public class sapopvp extends TCommand {
 
 			boolean gold = false;
 
-			int goldSize = sapopvp.gold.size();
-			int eisenSize = sapopvp.eisen.size();
+			final int goldSize = sapopvp.gold.size();
+			final int eisenSize = sapopvp.eisen.size();
 
 			if (goldSize > eisenSize)
 				gold = false;
@@ -80,8 +80,8 @@ public class sapopvp extends TCommand {
 		}
 
 		if (args[0].equalsIgnoreCase("pos1") || args[0].equalsIgnoreCase("pos2")) {
-			Location loc = p.getTargetBlock(null, 10).getLocation();
-			String locparse = loc.getWorld().getName() + "," + loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ();
+			final Location loc = p.getTargetBlock(null, 10).getLocation();
+			final String locparse = loc.getWorld().getName() + "," + loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ();
 
 			if (args[0].equalsIgnoreCase("pos1")) {
 				instance.getConfig().set("sapopvp.pos1", locparse);
@@ -97,8 +97,8 @@ public class sapopvp extends TCommand {
 			updateArena();
 
 		} else if (args[0].equalsIgnoreCase("warpgold") || args[0].equalsIgnoreCase("warpeisen")) {
-			Location loc = p.getLocation();
-			String locparse = loc.getWorld().getName() + "," + loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + "," + loc.getYaw() + "," + loc.getPitch();
+			final Location loc = p.getLocation();
+			final String locparse = loc.getWorld().getName() + "," + loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + "," + loc.getYaw() + "," + loc.getPitch();
 
 			if (args[0].equalsIgnoreCase("warpgold")) {
 				instance.getConfig().set("sapopvp.warpgold", locparse);
@@ -134,17 +134,17 @@ public class sapopvp extends TCommand {
 			p.sendMessage(sprefix + "Eisen: " + eisen);
 
 		} else
-			sender.sendMessage(getUsage());
+			sender.sendMessage(usage);
 	}
 
-	private void portToArena(Player p, boolean gold) {
+	private void portToArena(final Player p, final boolean gold) {
 		p.getInventory().clear();
 		p.getInventory().setArmorContents(null);
 		p.setHealth(20);
 		p.setFoodLevel(20);
 		p.setExp(0);
 		p.setGameMode(GameMode.SURVIVAL);
-		for (PotionEffect pe : p.getActivePotionEffects()) {
+		for (final PotionEffect pe : p.getActivePotionEffects()) {
 			p.removePotionEffect(pe.getType());
 		}
 
@@ -166,13 +166,13 @@ public class sapopvp extends TCommand {
 
 	private void sendIngame(String msg) {
 		for (String pl : sapopvp.gold) {
-			Player target = Bukkit.getPlayer(pl);
+			final Player target = Bukkit.getPlayer(pl);
 			if (target != null)
 				target.sendMessage(msg);
 		}
 
-		for (String pl : sapopvp.eisen) {
-			Player target = Bukkit.getPlayer(pl);
+		for (final String pl : sapopvp.eisen) {
+			final Player target = Bukkit.getPlayer(pl);
 			if (target != null)
 				target.sendMessage(msg);
 		}
@@ -187,8 +187,8 @@ public class sapopvp extends TCommand {
 		if (instance.getConfig().getString("sapopvp.warpgold").equalsIgnoreCase("") || instance.getConfig().getString("sapopvp.warpeisen").equalsIgnoreCase(""))
 			return;
 
-		String[] dataG = instance.getConfig().getString("sapopvp.warpgold").split(",");
-		String[] dataE = instance.getConfig().getString("sapopvp.warpeisen").split(",");
+		final String[] dataG = instance.getConfig().getString("sapopvp.warpgold").split(",");
+		final String[] dataE = instance.getConfig().getString("sapopvp.warpeisen").split(",");
 
 		warpGold = new Location(Bukkit.getWorld(dataG[0]), Integer.valueOf(dataG[1]), Integer.valueOf(dataG[2]), Integer.valueOf(dataG[3]), Float.valueOf(dataG[4]), Float.valueOf(dataG[5]));
 		warpEisen = new Location(Bukkit.getWorld(dataE[0]), Integer.valueOf(dataE[1]), Integer.valueOf(dataE[2]), Integer.valueOf(dataE[3]), Float.valueOf(dataE[4]), Float.valueOf(dataE[5]));

@@ -5,88 +5,87 @@
 
 package de.timolia.custom.cmds;
 
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 import de.timolia.custom.TimoliaCustom;
 
-public abstract class TCommand {
+public abstract class TCommand implements CommandExecutor {
+
+	final protected static String prefix = TimoliaCustom.PREFIX;
+	final protected static String PERMISSION_PREFIX = "tcustom";
+	protected static TimoliaCustom instance;
 
 	private String name;
 	private String permission = "";
-	private String desc = "";
-	private boolean onlyIngame = false;
+	private boolean ingame = false;
 	private int minArgs = 0;
 	private int maxArgs = -1;
-	private String usage = "";
-	protected static String prefix = TimoliaCustom.PREFIX;
-	protected static TimoliaCustom instance;
-	private static final String PERMISSION_PREFIX = "tcustom.";
+	protected String usage = "";
 
-	public TCommand(String name) {
-		this.name = name;
-		this.permission = PERMISSION_PREFIX + name;
+	public static void add(String commandName, TCommand tCmd) {
+		tCmd.name = commandName;
+		instance.getCommand(commandName).setExecutor(tCmd);
 	}
 
-	public abstract void perform(CommandSender sender, String[] args);
-
-	protected void setPermission(String permission) {
-		this.permission = permission;
-	}
-
-	protected void setDesc(String description) {
-		this.desc = description;
-	}
-
-	protected void setIngame() {
-		this.onlyIngame = true;
-	}
-
-	protected void setMinArgs(int minArgs) {
-		this.minArgs = minArgs;
-	}
-
-	protected void setMaxArgs(int string) {
-		this.maxArgs = string;
-	}
-
-	protected void setUsage(String text) {
-		this.usage = text;
-	}
-
-	static void setPluginInstance(TimoliaCustom instance) {
+	public static void setPluginInstance(TimoliaCustom instance) {
 		TCommand.instance = instance;
 	}
 
-	String getName() {
-		return this.name;
+	public TCommand() {
+		prepare();
 	}
 
-	String getPermission() {
-		return this.permission;
+	public boolean onCommand(final CommandSender sender, final Command cmd, final String label, String[] args) {
+		if (!permission.equalsIgnoreCase("") && !sender.hasPermission(permission)) {
+			sender.sendMessage(prefix + "You don't have permission!");
+			return true;
+		}
+
+		if (ingame && !(sender instanceof Player)) {
+			sender.sendMessage(prefix + "This command can only be executed from ingame!");
+			return false;
+		}
+
+		if (cmd.getUsage() != null)
+			this.usage = new StringBuilder(prefix).append(cmd.getUsage()).toString();
+
+		if (args.length >= minArgs && (args.length <= maxArgs || maxArgs == -1))
+			perform(sender, args);
+
+		else if (usage.equalsIgnoreCase(""))
+			sender.sendMessage(prefix + "Wrong argument count!");
+
+		else
+			sender.sendMessage(usage);
+
+		return true;
 	}
 
-	String getDescription() {
-		return this.desc;
+	protected abstract void prepare();
+
+	public abstract void perform(final CommandSender sender, String[] args);
+
+	protected void permission() {
+		this.permission(this.name);
 	}
 
-	boolean onlyIngame() {
-		return onlyIngame;
+	protected void permission(String permission) {
+		this.permission = new StringBuilder(PERMISSION_PREFIX).append(permission).toString();
 	}
 
-	int getMinArgs() {
-		return this.minArgs;
+	protected void ingame() {
+		this.ingame = true;
 	}
 
-	int getMaxArgs() {
-		return this.maxArgs;
+	protected void minArgs(int minArgs) {
+		this.minArgs = minArgs;
 	}
 
-	String getUsage() {
-		return "Benutzung: " + this.usage;
-	}
-
-	String getCleanUsage() {
-		return this.usage;
+	protected void maxArgs(int maxArgs) {
+		this.maxArgs = maxArgs;
 	}
 
 }

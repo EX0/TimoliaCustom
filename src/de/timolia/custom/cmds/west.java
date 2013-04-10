@@ -31,90 +31,84 @@ import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import de.timolia.custom.Message;
 import de.timolia.custom.TimoliaCustom;
 
-public class west extends TCommand {
+public final class west extends TCommand {
 
 	public static Map<String, Long> watched = new HashMap<String, Long>();
 	private static BukkitTask task;
 
-	private String wwPrefix = ChatColor.BLUE + "(Westwatch) " + ChatColor.WHITE;
+	private final String wwPrefix = ChatColor.BLUE + "(Westwatch) " + ChatColor.WHITE;
 
-	public west(String name) {
-		super(name);
-		setMinArgs(1);
-		setMaxArgs(2);
-		setUsage("/west help");
-		setDesc("Westliste");
+	protected void prepare() {
+		permission();
+		minArgs(1);
+		maxArgs(2);
 	}
 
-	public void perform(CommandSender sender, String args[]) {
+	public void perform(final CommandSender sender, String args[]) {
 		if (args[0].equalsIgnoreCase("list")) {
-			Iterator<String> iter = west.watched.keySet().iterator();
+			final Iterator<String> iter = west.watched.keySet().iterator();
 
 			if (args.length == 2 && args[1].equalsIgnoreCase("-i"))
 				sender.sendMessage(wwPrefix + "Liste aller Spieler:");
 			else
 				sender.sendMessage(wwPrefix + "Liste inaktiver Spieler:");
 
-			SimpleDateFormat sdf = new SimpleDateFormat("dd. MMM. yyyy, HH:mm");
+			final SimpleDateFormat sdf = new SimpleDateFormat("dd. MMM. yyyy, HH:mm");
 
 			while (iter.hasNext()) {
-				String key = (String) iter.next();
-				long value = west.watched.get(key);
+				final String key = (String) iter.next();
+				final long value = west.watched.get(key);
 
 				boolean toolong = false;
 
-				Calendar c1 = Calendar.getInstance();
+				final Calendar c1 = Calendar.getInstance();
 				c1.setTimeInMillis(value);
 				c1.add(Calendar.MONTH, 1);
-				Calendar c2 = Calendar.getInstance();
+				final Calendar c2 = Calendar.getInstance();
 
 				if (c2.after(c1))
 					toolong = true;
 
 				if (args.length == 2 && args[1].equalsIgnoreCase("-i")) {
-					if (toolong) {
+					if (toolong)
 						sender.sendMessage(key + ": " + ChatColor.RED + sdf.format(value));
-					} else {
+					else
 						sender.sendMessage(key + ": " + ChatColor.GREEN + sdf.format(value));
-					}
 
-				} else {
-					if (toolong) {
-						sender.sendMessage(key + ": " + sdf.format(value));
-					}
-				}
+				} else if (toolong)
+					sender.sendMessage(key + ": " + sdf.format(value));
 			}
 		}
 
 		else if (args[0].equalsIgnoreCase("scan")) {
-			WorldGuardPlugin wg = TimoliaCustom.getWorldGuard();
+			final WorldGuardPlugin wg = TimoliaCustom.getWorldGuard();
 			if (wg == null) {
 				sender.sendMessage(wwPrefix + "WorldGuard ist nicht geladen");
 				return;
 			}
 
-			World world = Bukkit.getWorld(instance.getConfig().getString("westwatchwelt"));
+			final World world = Bukkit.getWorld(instance.getConfig().getString("westwatchwelt"));
 
 			if (world == null) {
 				sender.sendMessage(wwPrefix + "Invalide Welt");
 				return;
 			}
 
-			RegionManager man = wg.getRegionManager(world);
+			final RegionManager man = wg.getRegionManager(world);
 			if (man == null) {
 				sender.sendMessage(wwPrefix + "Regionen für die Welt sind abgeschaltet");
 				return;
 			}
 
-			Map<String, ProtectedRegion> regions = man.getRegions();
-			Iterator<String> iter = regions.keySet().iterator();
+			final Map<String, ProtectedRegion> regions = man.getRegions();
+			final Iterator<String> iter = regions.keySet().iterator();
 			int count = 0;
 
 			while (iter.hasNext()) {
 				String name = iter.next();
 
 				name = name.replaceFirst("_", "%%");
-				String[] data = name.split("%%");
+				final String[] data = name.split("%%");
 
 				if (data.length == 2 && data[0].equalsIgnoreCase("west")) {
 					if (west.watched.containsKey(data[1].toLowerCase()))
@@ -128,64 +122,60 @@ public class west extends TCommand {
 			sender.sendMessage(wwPrefix + count + " Spieler wurden der Liste hinzugefügt");
 		}
 
-		else if (args[0].equalsIgnoreCase("save")) {
-			if (saveWatchedPlayers()) {
+		else if (args[0].equalsIgnoreCase("save"))
+			if (saveWatchedPlayers())
 				sender.sendMessage(wwPrefix + "Liste wurde gespeichert");
-			} else {
+			else
 				sender.sendMessage(wwPrefix + "Fehler beim Speichern der Liste");
-			}
-		}
 
-		else if (args[0].equalsIgnoreCase("load")) {
-			if (loadWatchedPlayers()) {
+		else if (args[0].equalsIgnoreCase("load"))
+			if (loadWatchedPlayers())
 				sender.sendMessage(wwPrefix + "Liste wurde geladen");
-			} else {
+			else
 				sender.sendMessage(wwPrefix + "Fehler beim Laden der Liste");
-			}
-		}
 
 		else if (args[0].equalsIgnoreCase("purge")) {
-			WorldGuardPlugin wg = TimoliaCustom.getWorldGuard();
+			final WorldGuardPlugin wg = TimoliaCustom.getWorldGuard();
 			if (wg == null) {
 				sender.sendMessage(wwPrefix + "WorldGuard ist nicht geladen");
 				return;
 			}
 
-			World world = Bukkit.getWorld(instance.getConfig().getString("westwatchwelt"));
+			final World world = Bukkit.getWorld(instance.getConfig().getString("westwatchwelt"));
 
 			if (world == null) {
 				sender.sendMessage(wwPrefix + "Invalide Welt");
 				return;
 			}
 
-			RegionManager man = wg.getRegionManager(world);
+			final RegionManager man = wg.getRegionManager(world);
 			if (man == null) {
 				sender.sendMessage(wwPrefix + "Regionen f�r die Welt sind abgeschaltet");
 				return;
 			}
 
-			Map<String, ProtectedRegion> regions = man.getRegions();
-			Iterator<String> iter = regions.keySet().iterator();
-			List<String> in = new ArrayList<String>();
+			final Map<String, ProtectedRegion> regions = man.getRegions();
+			final Iterator<String> iter = regions.keySet().iterator();
+			final List<String> in = new ArrayList<String>();
 
 			while (iter.hasNext()) {
 				String name = iter.next();
 				name = name.replaceFirst("_", "%%");
-				String[] data = name.split("%%");
+				final String[] data = name.split("%%");
 				if (data.length == 2 && data[0].equalsIgnoreCase("west"))
 					in.add(data[1]);
 			}
 
-			Iterator<String> iterate = west.watched.keySet().iterator();
-			List<String> removes = new ArrayList<String>();
+			final Iterator<String> iterate = west.watched.keySet().iterator();
+			final List<String> removes = new ArrayList<String>();
 			while (iterate.hasNext()) {
-				String key = (String) iterate.next();
+				final String key = (String) iterate.next();
 				if (!in.contains(key))
 					removes.add(key);
 			}
 
 			int count = 0;
-			for (String remove : removes) {
+			for (final String remove : removes) {
 				west.watched.remove(remove);
 				count++;
 			}
@@ -237,7 +227,7 @@ public class west extends TCommand {
 		}
 	}
 
-	private void displayHelp(CommandSender sender) {
+	private void displayHelp(final CommandSender sender) {
 		sender.sendMessage("******" + ChatColor.BLUE + "(Westwatch)" + ChatColor.WHITE + "******");
 		sender.sendMessage("Zu benutzen wie folgt: /west <Parameter>");
 		sender.sendMessage("Parameter:");
@@ -254,13 +244,13 @@ public class west extends TCommand {
 
 	public static boolean saveWatchedPlayers() {
 		try {
-			File file = new File(TimoliaCustom.dataFolder + File.separator + "watched.custom");
-			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
+			final File file = new File(TimoliaCustom.dataFolder + File.separator + "watched.custom");
+			final ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
 			oos.writeObject(west.watched);
 			oos.flush();
 			oos.close();
 			return true;
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			Message.console("Fehler beim Speichern der Westliste: " + e.getMessage());
 			return false;
 		}
@@ -269,15 +259,15 @@ public class west extends TCommand {
 	@SuppressWarnings("unchecked")
 	public static boolean loadWatchedPlayers() {
 		try {
-			File file = new File(TimoliaCustom.dataFolder + File.separator + "watched.custom");
+			final File file = new File(TimoliaCustom.dataFolder + File.separator + "watched.custom");
 			if (!file.exists())
 				return false;
 
-			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+			final ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
 			west.watched = (HashMap<String, Long>) ois.readObject();
 			ois.close();
 			return true;
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			Message.console("Fehler beim Laden der Westliste: " + e.getMessage());
 			return false;
 		}

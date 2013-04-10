@@ -14,14 +14,12 @@ import java.nio.channels.FileChannel;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
-public class sgcopy extends TCommand {
+public final class sgcopy extends TCommand {
 
-	public sgcopy(String name) {
-		super(name);
-		setMinArgs(1);
-		setMaxArgs(1);
-		setUsage("/sgcopy <map>");
-		setDesc("Kopiere eine Survival-Games Map");
+	protected void prepare() {
+		permission();
+		minArgs(1);
+		maxArgs(1);
 	}
 
 	public void perform(final CommandSender sender, String[] args) {
@@ -42,31 +40,31 @@ public class sgcopy extends TCommand {
 					sender.sendMessage(prefix + "Welt wird kopiert!");
 					copyFolder(file, new File("sgames"));
 					sender.sendMessage(prefix + "Welt kopiert!");
-				} catch (IOException e) {
+				} catch (final IOException e) {
 					sender.sendMessage(prefix + "Fehler beim Kopieren!");
 				}
 			}
 		}).start();
 	}
 
-	private static void copyFolder(File src, File dest) throws IOException {
+	private static void copyFolder(final File src, final File dest) throws IOException {
 		if (src.isDirectory()) {
 			if (dest.exists())
 				deleteFolder(dest);
 
 			dest.mkdir();
 
-			for (String file : src.list()) {
-				File srcFile = new File(src, file);
-				File destFile = new File(dest, file);
+			for (final String file : src.list()) {
+				final File srcFile = new File(src, file);
+				final File destFile = new File(dest, file);
 				copyFolder(srcFile, destFile);
 			}
 
 		} else {
-			FileInputStream in = new FileInputStream(src);
-			FileOutputStream out = new FileOutputStream(dest);
-			FileChannel ic = in.getChannel();
-			FileChannel oc = out.getChannel();
+			final FileInputStream in = new FileInputStream(src);
+			final FileOutputStream out = new FileOutputStream(dest);
+			final FileChannel ic = in.getChannel();
+			final FileChannel oc = out.getChannel();
 			ic.transferTo(0L, ic.size(), oc);
 			in.close();
 			out.close();
@@ -76,9 +74,9 @@ public class sgcopy extends TCommand {
 	}
 
 	private static void deleteFolder(File folder) {
-		File[] files = folder.listFiles();
+		final File[] files = folder.listFiles();
 		if (files != null)
-			for (File f : files)
+			for (final File f : files)
 				if (f.isDirectory())
 					deleteFolder(f);
 				else

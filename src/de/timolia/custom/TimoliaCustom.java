@@ -46,6 +46,7 @@ public class TimoliaCustom extends JavaPlugin {
 		west.loadWatchedPlayers();
 		west.repeatScanning();
 		ProjectileListener.addPoisonousArrowRecipe();
+		PlayerListener.addPocketWorkbenchRecipe();
 	}
 
 	public void onDisable() {

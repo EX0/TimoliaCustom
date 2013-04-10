@@ -5,6 +5,7 @@
 
 package de.timolia.custom.events;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -12,11 +13,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import de.timolia.custom.Message;
@@ -30,6 +34,28 @@ public class PlayerListener implements Listener {
 
 	public PlayerListener(TimoliaCustom plugin) {
 		this.plugin = plugin;
+	}
+
+	public static void addPocketWorkbenchRecipe() {
+		ItemStack item = new ItemStack(Material.WORKBENCH, 1);
+		ItemMeta meta = item.getItemMeta();
+		meta.setDisplayName(ChatColor.RESET + "Pocket Workbench");
+		item.setItemMeta(meta);
+		ShapelessRecipe recipe = new ShapelessRecipe(item);
+		recipe.addIngredient(Material.WORKBENCH);
+		recipe.addIngredient(Material.STICK);
+		Bukkit.addRecipe(recipe);
+	}
+
+	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+	public void onPlayerInteract(PlayerInteractEvent event) {
+		if ((event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) && event.getItem() != null && event.getItem().getType() == Material.WORKBENCH && event.getPlayer().hasPermission("tcustom.pocketworkbench")) {
+			ItemMeta meta = event.getItem().getItemMeta();
+			if (meta.getDisplayName() != null && meta.getDisplayName().equalsIgnoreCase(ChatColor.RESET + "Pocket Workbench")) {
+				event.getPlayer().openWorkbench(null, true);
+				event.setCancelled(true);
+			}
+		}
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)

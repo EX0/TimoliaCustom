@@ -25,12 +25,12 @@ public abstract class TCommand implements CommandExecutor {
 	private int maxArgs = -1;
 	protected String usage = "";
 
-	public static void add(String commandName, TCommand tCmd) {
+	public static final void add(String commandName, TCommand tCmd) {
 		tCmd.name = commandName;
 		instance.getCommand(commandName).setExecutor(tCmd);
 	}
 
-	public static void setPluginInstance(TimoliaCustom instance) {
+	public static final void setPluginInstance(TimoliaCustom instance) {
 		TCommand.instance = instance;
 	}
 
@@ -38,7 +38,7 @@ public abstract class TCommand implements CommandExecutor {
 		prepare();
 	}
 
-	public boolean onCommand(final CommandSender sender, final Command cmd, final String label, String[] args) {
+	public final boolean onCommand(final CommandSender sender, final Command cmd, final String label, String[] args) {
 		if (!permission.equalsIgnoreCase("") && !sender.hasPermission(permission)) {
 			sender.sendMessage(prefix + "You don't have permission!");
 			return true;
@@ -68,23 +68,23 @@ public abstract class TCommand implements CommandExecutor {
 
 	public abstract void perform(final CommandSender sender, String[] args);
 
-	protected void permission() {
+	protected final void permission() {
 		this.permission(this.name);
 	}
 
-	protected void permission(String permission) {
+	protected final void permission(String permission) {
 		this.permission = new StringBuilder(PERMISSION_PREFIX).append(permission).toString();
 	}
 
-	protected void ingame() {
+	protected final void ingame() {
 		this.ingame = true;
 	}
 
-	protected void minArgs(int minArgs) {
+	protected final void minArgs(int minArgs) {
 		this.minArgs = minArgs;
 	}
 
-	protected void maxArgs(int maxArgs) {
+	protected final void maxArgs(int maxArgs) {
 		this.maxArgs = maxArgs;
 	}
 

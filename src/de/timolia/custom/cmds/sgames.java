@@ -18,7 +18,7 @@ public final class sgames extends TCommand {
 		maxArgs(0);
 	}
 
-	public void perform(CommandSender sender, String[] args) {
+	public void perform(final CommandSender sender, String[] args) {
 		World sgames = Bukkit.getWorld("sgames");
 
 		if (sgames == null) {

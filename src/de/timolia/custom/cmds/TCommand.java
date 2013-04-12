@@ -27,6 +27,7 @@ public abstract class TCommand implements CommandExecutor {
 
 	public static final void add(String commandName, TCommand tCmd) {
 		tCmd.name = commandName;
+		tCmd.prepare();
 		instance.getCommand(commandName).setExecutor(tCmd);
 	}
 
@@ -34,18 +35,14 @@ public abstract class TCommand implements CommandExecutor {
 		TCommand.instance = instance;
 	}
 
-	public TCommand() {
-		prepare();
-	}
-
 	public final boolean onCommand(final CommandSender sender, final Command cmd, final String label, String[] args) {
-		if (!permission.equalsIgnoreCase("") && !sender.hasPermission(permission)) {
-			sender.sendMessage(prefix + "You don't have permission!");
+		if (!permission.equalsIgnoreCase("") && !sender.hasPermission(this.permission)) {
+			sender.sendMessage(prefix + "Du hast keine Berechtigung für diesen Befehl!");
 			return true;
 		}
 
 		if (ingame && !(sender instanceof Player)) {
-			sender.sendMessage(prefix + "This command can only be executed from ingame!");
+			sender.sendMessage(prefix + "Dieser Befehl kann nur ingame eingegeben werden!");
 			return false;
 		}
 
@@ -56,7 +53,7 @@ public abstract class TCommand implements CommandExecutor {
 			perform(sender, args);
 
 		else if (usage.equalsIgnoreCase(""))
-			sender.sendMessage(prefix + "Wrong argument count!");
+			sender.sendMessage(prefix + "Falsche Argumenten-Zahl");
 
 		else
 			sender.sendMessage(usage);
@@ -73,7 +70,7 @@ public abstract class TCommand implements CommandExecutor {
 	}
 
 	protected final void permission(String permission) {
-		this.permission = new StringBuilder(PERMISSION_PREFIX).append(permission).toString();
+		this.permission = PERMISSION_PREFIX + permission;
 	}
 
 	protected final void ingame() {

@@ -20,6 +20,7 @@ import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 
 import de.timolia.custom.cmds.TCommand;
 import de.timolia.custom.cmds.checkent;
+import de.timolia.custom.cmds.speed;
 import de.timolia.custom.cmds.google;
 import de.timolia.custom.cmds.itp;
 import de.timolia.custom.cmds.protnpc;
@@ -62,6 +63,7 @@ public class TimoliaCustom extends JavaPlugin {
 	private void initCommands() {
 		TCommand.setPluginInstance(this);
 		TCommand.add("checkent", new checkent());
+		TCommand.add("speed", new speed());
 		TCommand.add("google", new google());
 		TCommand.add("itp", new itp());
 		TCommand.add("protnpc", new protnpc());

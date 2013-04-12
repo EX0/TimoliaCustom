@@ -7,8 +7,8 @@ commands:
     checkent:
         usage: /checkent [args]
         description: Pruefe die Entities auf einem bestimmten Grundstueck
-    flyspeed:
-        usage: /flyspeed [speed]
+    speed:
+        usage: /speed [speed]
         description: Stelle deine Fluggeschwindigkeit ein
     google:
         usage: /google <msg>

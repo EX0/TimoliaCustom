@@ -15,7 +15,7 @@ import de.timolia.custom.TimoliaCustom;
 public abstract class TCommand implements CommandExecutor {
 
 	final protected static String prefix = TimoliaCustom.PREFIX;
-	final protected static String PERMISSION_PREFIX = "tcustom";
+	final protected static String PERMISSION_PREFIX = "tcustom.";
 	protected static TimoliaCustom instance;
 
 	private String name;

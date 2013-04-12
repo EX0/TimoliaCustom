@@ -10,14 +10,12 @@ import org.bukkit.entity.Player;
 
 public final class speed extends TCommand {
 
-	@Override
 	protected void prepare() {
 		permission();
 		ingame();
 		maxArgs(1);
 	}
 
-	@Override
 	public void perform(final CommandSender sender, String[] args) {
 		Player p = (Player) sender;
 		if (args.length == 1) {

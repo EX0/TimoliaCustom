@@ -7,7 +7,7 @@ package de.timolia.custom.cmds;
 
 import org.bukkit.command.CommandSender;
 
-public class tcustom extends TCommand {
+public final class tcustom extends TCommand {
 
 	protected void prepare() {
 		permission();

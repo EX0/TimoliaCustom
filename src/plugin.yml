@@ -7,9 +7,6 @@ commands:
     checkent:
         usage: /checkent [args]
         description: Pruefe die Entities auf einem bestimmten Grundstueck
-    speed:
-        usage: /speed [speed]
-        description: Stelle deine Fluggeschwindigkeit ein
     google:
         usage: /google <msg>
         description: goooooooglen
@@ -28,6 +25,9 @@ commands:
     sgcopy:
         usage: /sgcopy <map>
         description: Kopiere eine Survival-Games Map
+    speed:
+        usage: /speed [speed]
+        description: Stelle deine Fluggeschwindigkeit ein
     tcustom:
         usage: /tcustom <reload>
         description: Plugin-Einstellungen

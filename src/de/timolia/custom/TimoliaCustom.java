@@ -63,13 +63,13 @@ public class TimoliaCustom extends JavaPlugin {
 	private void initCommands() {
 		TCommand.setPluginInstance(this);
 		TCommand.add("checkent", new checkent());
-		TCommand.add("speed", new speed());
 		TCommand.add("google", new google());
 		TCommand.add("itp", new itp());
 		TCommand.add("protnpc", new protnpc());
 		TCommand.add("sapopvp", new sapopvp());
 		TCommand.add("sgames", new sgames());
 		TCommand.add("sgcopy", new sgcopy());
+		TCommand.add("speed", new speed());
 		TCommand.add("tcustom", new tcustom());
 		TCommand.add("west", new west());
 	}

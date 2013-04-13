@@ -20,14 +20,15 @@ import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 
 import de.timolia.custom.cmds.TCommand;
 import de.timolia.custom.cmds.checkent;
-import de.timolia.custom.cmds.speed;
 import de.timolia.custom.cmds.google;
 import de.timolia.custom.cmds.itp;
 import de.timolia.custom.cmds.protnpc;
 import de.timolia.custom.cmds.sapopvp;
 import de.timolia.custom.cmds.sgames;
 import de.timolia.custom.cmds.sgcopy;
+import de.timolia.custom.cmds.speed;
 import de.timolia.custom.cmds.tcustom;
+import de.timolia.custom.cmds.tpack;
 import de.timolia.custom.cmds.west;
 import de.timolia.custom.events.EntityListener;
 import de.timolia.custom.events.InventoryListener;
@@ -71,6 +72,7 @@ public class TimoliaCustom extends JavaPlugin {
 		TCommand.add("sgcopy", new sgcopy());
 		TCommand.add("speed", new speed());
 		TCommand.add("tcustom", new tcustom());
+		TCommand.add("tpack", new tpack());
 		TCommand.add("west", new west());
 	}
 

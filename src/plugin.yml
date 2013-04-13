@@ -31,6 +31,8 @@ commands:
     tcustom:
         usage: /tcustom <reload>
         description: Plugin-Einstellungen
+    tpack:
+        usage: /tpack [Spieler] <url>
     west:
         usage: /west help
         description: Westliste

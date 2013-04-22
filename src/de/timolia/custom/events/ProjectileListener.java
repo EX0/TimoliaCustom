@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -25,8 +24,6 @@ import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
-import org.bukkit.inventory.ShapelessRecipe;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -80,18 +77,6 @@ public class ProjectileListener implements Listener {
 				}
 			}
 		}
-	}
-
-	// giftpfeile
-	public static void addPoisonousArrowRecipe() {
-		ItemStack item = new ItemStack(Material.ARROW, 1);
-		ItemMeta meta = item.getItemMeta();
-		meta.setDisplayName(ChatColor.DARK_RED + "Giftpfeil");
-		item.setItemMeta(meta);
-		ShapelessRecipe recipe = new ShapelessRecipe(item);
-		recipe.addIngredient(Material.ARROW);
-		recipe.addIngredient(Material.POISONOUS_POTATO);
-		Bukkit.addRecipe(recipe);
 	}
 
 }

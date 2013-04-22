@@ -12,7 +12,13 @@ import java.text.SimpleDateFormat;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.ShapelessRecipe;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.material.MaterialData;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -45,14 +51,13 @@ public class TimoliaCustom extends JavaPlugin {
 		initCommands();
 		initEventHandlers();
 		initConfig();
+		initRecipes();
 		dataFolder = getDataFolder();
 
 		sapopvp.updateArena();
 		protnpc.load();
 		west.loadWatchedPlayers();
 		west.repeatScanning();
-		ProjectileListener.addPoisonousArrowRecipe();
-		PlayerListener.addPocketWorkbenchRecipe();
 	}
 
 	public void onDisable() {
@@ -93,6 +98,44 @@ public class TimoliaCustom extends JavaPlugin {
 		conf.addDefault("sgamesdeathmsg", true);
 		conf.options().copyDefaults(true);
 		saveConfig();
+	}
+
+	private void initRecipes() {
+		// giftpfeile
+		ItemStack item = new ItemStack(Material.ARROW, 1);
+		ItemMeta meta = item.getItemMeta();
+		meta.setDisplayName(ChatColor.DARK_RED + "Giftpfeil");
+		item.setItemMeta(meta);
+		ShapelessRecipe recipe = new ShapelessRecipe(item);
+		recipe.addIngredient(Material.ARROW);
+		recipe.addIngredient(Material.POISONOUS_POTATO);
+		Bukkit.addRecipe(recipe);
+
+		// pocket-workbench
+		ItemStack item2 = new ItemStack(Material.WORKBENCH, 1);
+		ItemMeta meta2 = item2.getItemMeta();
+		meta2.setDisplayName(ChatColor.RESET + "Pocket Workbench");
+		item.setItemMeta(meta2);
+		ShapelessRecipe recipe2 = new ShapelessRecipe(item2);
+		recipe2.addIngredient(Material.WORKBENCH);
+		recipe2.addIngredient(Material.STICK);
+		Bukkit.addRecipe(recipe2);
+
+		// double steps
+		
+		ItemStack item3 = new ItemStack(Material.DOUBLE_STEP, 1, (byte) 0);
+		ShapedRecipe recipe3 = new ShapedRecipe(item3);
+		recipe3.shape("A", "B", "A");
+		recipe3.setIngredient('A', new MaterialData(Material.STEP, (byte) 0));
+		Bukkit.addRecipe(recipe3);
+
+		for (int i = 8; i <= 9; i++) {
+			ItemStack itemI = new ItemStack(Material.DOUBLE_STEP, 1, (byte) i);
+			ShapedRecipe recipeI = new ShapedRecipe(itemI);
+			recipeI.shape("AA");
+			recipeI.setIngredient('A', new MaterialData(Material.STEP, (byte) (i - 8)));
+			Bukkit.addRecipe(recipeI);
+		}
 	}
 
 	public static WorldGuardPlugin getWorldGuard() {

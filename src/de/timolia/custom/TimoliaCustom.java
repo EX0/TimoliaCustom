@@ -43,122 +43,122 @@ import de.timolia.custom.events.ProjectileListener;
 
 public class TimoliaCustom extends JavaPlugin {
 
-	public static final String PREFIX = ChatColor.GREEN + "[TCustom] " + ChatColor.WHITE;
-	public static File dataFolder;
-	public static boolean coding = false;
+    public static final String PREFIX = ChatColor.GREEN + "[TCustom] " + ChatColor.WHITE;
+    public static File dataFolder;
+    public static boolean coding = false;
 
-	public void onEnable() {
-		initCommands();
-		initEventHandlers();
-		initConfig();
-		initRecipes();
-		dataFolder = getDataFolder();
+    public void onEnable() {
+        initCommands();
+        initEventHandlers();
+        initConfig();
+        initRecipes();
+        dataFolder = getDataFolder();
 
-		sapopvp.updateArena();
-		protnpc.load();
-		west.loadWatchedPlayers();
-		west.repeatScanning();
-	}
+        sapopvp.updateArena();
+        protnpc.load();
+        west.loadWatchedPlayers();
+        west.repeatScanning();
+    }
 
-	public void onDisable() {
-		west.saveWatchedPlayers();
-		west.stopScanning();
-		protnpc.save();
-	}
+    public void onDisable() {
+        west.saveWatchedPlayers();
+        west.stopScanning();
+        protnpc.save();
+    }
 
-	private void initCommands() {
-		TCommand.setPluginInstance(this);
-		TCommand.add("checkent", new checkent());
-		TCommand.add("google", new google());
-		TCommand.add("itp", new itp());
-		TCommand.add("protnpc", new protnpc());
-		TCommand.add("sapopvp", new sapopvp());
-		TCommand.add("sgames", new sgames());
-		TCommand.add("sgcopy", new sgcopy());
-		TCommand.add("speed", new speed());
-		TCommand.add("tcustom", new tcustom());
-		TCommand.add("tpack", new tpack());
-		TCommand.add("west", new west());
-	}
+    private void initCommands() {
+        TCommand.setPluginInstance(this);
+        TCommand.add("checkent", new checkent());
+        TCommand.add("google", new google());
+        TCommand.add("itp", new itp());
+        TCommand.add("protnpc", new protnpc());
+        TCommand.add("sapopvp", new sapopvp());
+        TCommand.add("sgames", new sgames());
+        TCommand.add("sgcopy", new sgcopy());
+        TCommand.add("speed", new speed());
+        TCommand.add("tcustom", new tcustom());
+        TCommand.add("tpack", new tpack());
+        TCommand.add("west", new west());
+    }
 
-	private void initEventHandlers() {
-		Bukkit.getPluginManager().registerEvents(new PlayerListener(this), this);
-		Bukkit.getPluginManager().registerEvents(new EntityListener(), this);
-		Bukkit.getPluginManager().registerEvents(new InventoryListener(), this);
-		Bukkit.getPluginManager().registerEvents(new ProjectileListener(), this);
-	}
+    private void initEventHandlers() {
+        Bukkit.getPluginManager().registerEvents(new PlayerListener(this), this);
+        Bukkit.getPluginManager().registerEvents(new EntityListener(), this);
+        Bukkit.getPluginManager().registerEvents(new InventoryListener(), this);
+        Bukkit.getPluginManager().registerEvents(new ProjectileListener(), this);
+    }
 
-	private void initConfig() {
-		final FileConfiguration conf = getConfig();
-		conf.addDefault("sapopvp.pos1", "");
-		conf.addDefault("sapopvp.pos2", "");
-		conf.addDefault("sapopvp.warpgold", "");
-		conf.addDefault("sapopvp.warpeisen", "");
-		conf.addDefault("westwatchwelt", "timolia");
-		conf.addDefault("sgamesdeathmsg", true);
-		conf.options().copyDefaults(true);
-		saveConfig();
-	}
+    private void initConfig() {
+        final FileConfiguration conf = getConfig();
+        conf.addDefault("sapopvp.pos1", "");
+        conf.addDefault("sapopvp.pos2", "");
+        conf.addDefault("sapopvp.warpgold", "");
+        conf.addDefault("sapopvp.warpeisen", "");
+        conf.addDefault("westwatchwelt", "timolia");
+        conf.addDefault("sgamesdeathmsg", true);
+        conf.options().copyDefaults(true);
+        saveConfig();
+    }
 
-	private void initRecipes() {
-		// giftpfeile
-		ItemStack item = new ItemStack(Material.ARROW, 1);
-		ItemMeta meta = item.getItemMeta();
-		meta.setDisplayName(ChatColor.DARK_RED + "Giftpfeil");
-		item.setItemMeta(meta);
-		ShapelessRecipe recipe = new ShapelessRecipe(item);
-		recipe.addIngredient(Material.ARROW);
-		recipe.addIngredient(Material.POISONOUS_POTATO);
-		Bukkit.addRecipe(recipe);
+    private void initRecipes() {
+        // giftpfeile
+        ItemStack item = new ItemStack(Material.ARROW, 1);
+        ItemMeta meta = item.getItemMeta();
+        meta.setDisplayName(ChatColor.DARK_RED + "Giftpfeil");
+        item.setItemMeta(meta);
+        ShapelessRecipe recipe = new ShapelessRecipe(item);
+        recipe.addIngredient(Material.ARROW);
+        recipe.addIngredient(Material.POISONOUS_POTATO);
+        Bukkit.addRecipe(recipe);
 
-		// pocket-workbench
-		ItemStack item2 = new ItemStack(Material.WORKBENCH, 1);
-		ItemMeta meta2 = item2.getItemMeta();
-		meta2.setDisplayName(ChatColor.RESET + "Pocket Workbench");
-		item.setItemMeta(meta2);
-		ShapelessRecipe recipe2 = new ShapelessRecipe(item2);
-		recipe2.addIngredient(Material.WORKBENCH);
-		recipe2.addIngredient(Material.STICK);
-		Bukkit.addRecipe(recipe2);
+        // pocket-workbench
+        ItemStack item2 = new ItemStack(Material.WORKBENCH, 1);
+        ItemMeta meta2 = item2.getItemMeta();
+        meta2.setDisplayName(ChatColor.RESET + "Pocket Workbench");
+        item.setItemMeta(meta2);
+        ShapelessRecipe recipe2 = new ShapelessRecipe(item2);
+        recipe2.addIngredient(Material.WORKBENCH);
+        recipe2.addIngredient(Material.STICK);
+        Bukkit.addRecipe(recipe2);
 
-		// double steps
-		
-		ItemStack item3 = new ItemStack(Material.DOUBLE_STEP, 1, (byte) 0);
-		ShapedRecipe recipe3 = new ShapedRecipe(item3);
-		recipe3.shape("A", "B", "A");
-		recipe3.setIngredient('A', new MaterialData(Material.STEP, (byte) 0));
-		Bukkit.addRecipe(recipe3);
+        // double steps
 
-		for (int i = 8; i <= 9; i++) {
-			ItemStack itemI = new ItemStack(Material.DOUBLE_STEP, 1, (byte) i);
-			ShapedRecipe recipeI = new ShapedRecipe(itemI);
-			recipeI.shape("AA");
-			recipeI.setIngredient('A', new MaterialData(Material.STEP, (byte) (i - 8)));
-			Bukkit.addRecipe(recipeI);
-		}
-	}
+        ItemStack item3 = new ItemStack(Material.DOUBLE_STEP, 1, (byte) 0);
+        ShapedRecipe recipe3 = new ShapedRecipe(item3);
+        recipe3.shape("A", "B", "A");
+        recipe3.setIngredient('A', new MaterialData(Material.STEP, (byte) 0));
+        Bukkit.addRecipe(recipe3);
 
-	public static WorldGuardPlugin getWorldGuard() {
-		final Plugin plugin = Bukkit.getPluginManager().getPlugin("WorldGuard");
+        for (int i = 8; i <= 9; i++) {
+            ItemStack itemI = new ItemStack(Material.DOUBLE_STEP, 1, (byte) i);
+            ShapedRecipe recipeI = new ShapedRecipe(itemI);
+            recipeI.shape("AA");
+            recipeI.setIngredient('A', new MaterialData(Material.STEP, (byte) (i - 8)));
+            Bukkit.addRecipe(recipeI);
+        }
+    }
 
-		if (plugin == null || !(plugin instanceof WorldGuardPlugin)) {
-			return null;
-		}
+    public static WorldGuardPlugin getWorldGuard() {
+        final Plugin plugin = Bukkit.getPluginManager().getPlugin("WorldGuard");
 
-		return (WorldGuardPlugin) plugin;
-	}
+        if (plugin == null || !(plugin instanceof WorldGuardPlugin)) {
+            return null;
+        }
 
-	public static void logError(final String err) {
-		try {
-			final File file = new File(TimoliaCustom.dataFolder + File.separator + "errors.txt");
-			final BufferedWriter output = new BufferedWriter(new FileWriter(file, true));
-			final String date = new SimpleDateFormat("dd. MMM. yyyy, HH:mm").format(System.currentTimeMillis());
-			output.append(date + "\t" + err + "\n");
-			output.close();
-			Message.console("Error logged!");
-		} catch (final Exception e) {
+        return (WorldGuardPlugin) plugin;
+    }
 
-		}
-	}
+    public static void logError(final String err) {
+        try {
+            final File file = new File(TimoliaCustom.dataFolder + File.separator + "errors.txt");
+            final BufferedWriter output = new BufferedWriter(new FileWriter(file, true));
+            final String date = new SimpleDateFormat("dd. MMM. yyyy, HH:mm").format(System.currentTimeMillis());
+            output.append(date + "\t" + err + "\n");
+            output.close();
+            Message.console("Error logged!");
+        } catch (final Exception e) {
+
+        }
+    }
 
 }

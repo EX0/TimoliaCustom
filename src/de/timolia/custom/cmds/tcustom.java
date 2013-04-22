@@ -9,18 +9,18 @@ import org.bukkit.command.CommandSender;
 
 public final class tcustom extends TCommand {
 
-	protected void prepare() {
-		permission();
-		minArgs(1);
-		maxArgs(1);
-	}
+    protected void prepare() {
+        permission();
+        minArgs(1);
+        maxArgs(1);
+    }
 
-	public void perform(final CommandSender sender, String[] args) {
-		if (args[0].equalsIgnoreCase("reload")) {
-			instance.reloadConfig();
-			sender.sendMessage(prefix + "Konfiguration neu geladen!");
-		} else
-			sender.sendMessage(usage);
-	}
+    public void perform(final CommandSender sender, String[] args) {
+        if (args[0].equalsIgnoreCase("reload")) {
+            instance.reloadConfig();
+            sender.sendMessage(prefix + "Konfiguration neu geladen!");
+        } else
+            sender.sendMessage(usage);
+    }
 
 }

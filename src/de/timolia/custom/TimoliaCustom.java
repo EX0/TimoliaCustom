@@ -122,7 +122,6 @@ public class TimoliaCustom extends JavaPlugin {
         Bukkit.addRecipe(recipe2);
 
         // double steps
-
         ItemStack item3 = new ItemStack(Material.DOUBLE_STEP, 1, (byte) 0);
         ShapedRecipe recipe3 = new ShapedRecipe(item3);
         recipe3.shape("A", "B", "A");

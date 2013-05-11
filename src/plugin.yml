@@ -16,6 +16,9 @@ commands:
     protnpc:
         usage: /protnpc
         description: Protecte Villager
+    rmprot:
+        usage: /rmprot
+        description: Loescht die LWC-Sicherungen in deiner Selektion
     sapopvp:
         usage: /sapopvp [gold/eisen/pos1/pos2/warpgold/warpeisen/list]
         description: Befehl fuer die PVP-Arena
